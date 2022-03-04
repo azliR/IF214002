@@ -1,6 +1,6 @@
 # Pertemuan 1
 
-# Tugas
+## Tugas
 1. Instalasi Diagrams.net
 2. Membuat contoh diagram ERD
 3. Instalasi Docker
