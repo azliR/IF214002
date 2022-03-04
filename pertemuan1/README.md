@@ -10,4 +10,4 @@
 - [ERD Draw.io](./pertemuan1.drawio)
 
 ## Kendala
-- 
+- Tidak ada
