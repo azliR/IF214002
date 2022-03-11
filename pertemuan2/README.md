@@ -1,10 +1,11 @@
 # Ide Solusi: Aplikasi Pengelola Budidaya dan Jual Beli Ikan
+![L](pertemuan2.drawio.svg)
 ## Deskripsi
 Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembudidayaan dan penjualan ikan. Beberapa fitur-fitur yang tersedia diantaranya:
 - Membuat lapak budidaya bisnis ikan
-- Mengelola data kolam beserta pemberian pakan dengan fitur "Rutin"
+- Mengelola data kolam 
+- Pemberian makan otomatis dengan fitur "Rutin"
 - Membeli dan menjual hasil panen
-  
 
 ## Entitas dan Atribut
 ### Pengguna
@@ -16,6 +17,7 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 
 ### Budidaya
 - ID
+- ID Pengguna
 - Nama Budidaya
 - Jenis Budidaya
   - Lele
@@ -31,6 +33,7 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 ### Kolam
 - ID
 - ID Budidaya
+- Nama Kolam (optional)
 - Panjang Kolam
 - Lebar Kolam
 - Jumlah Ikan (optional)
@@ -45,21 +48,21 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 ### Konsumsi Ikan
 - ID
 - Nama Konsumsi Ikan
-- Jumlah Konsumsi Ikan Saat Ini
-- Tipe Konsumsi Ikan 
+- Jumlah saat ini
+- Tipe Konsumsi Ikan
   - pakan
   - obat
 - Satuan Hitungan
   - kg
   - liter
-- Harga (per kg, per liter)
+- Harga per satuan
 
 ### Pemberian Konsumsi Ikan
 - ID
 - ID Kolam
 - ID Konsumsi Ikan
-- Tanggal Pemberian Konsumsi Ikan
-- Konsumsi Ikan yang Digunakan
+- Tanggal Pemberian
+- Banyaknya digunakan
 - Biaya digunakan
 
 ### Rutin
@@ -71,7 +74,7 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 - ID
 - ID Rutin
 - ID Konsumsi Ikan
-- Nama Aksi `// contoh: pemberian pakan`
+- Nama Aksi `// contoh: pemberian pakan, pemberian obat`
 - Konsumsi yang Digunakan
 
 ### Kolam Rutin
@@ -90,7 +93,7 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 - Nama Barang
 - Gambar
 - Harga
-- Stok Barang
+- Stok
 - Satuan Hitungan 
   - per ekor
   - per kg
