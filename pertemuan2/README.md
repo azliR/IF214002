@@ -1,66 +1,124 @@
-# Ide Solusi: Sistem Resepsionis
+# Ide Solusi: Aplikasi Pengelola Budidaya dan Jual Beli Ikan
 ## Deskripsi
-Aplikasi ini bertujuan untuk memudahkan dalam mencatat dan mengorganisir pemesanan meja. Aplikasi ini memiliki fitur-fitur:
-- Mencatat bookingan untuk setiap meja
-- Filter makanan saat memesan
-- Adanya riwayat pemesanan
-- Terdapat status pesanan untuk melihat jika pesanan sudah siap
+Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembudidayaan dan penjualan ikan. Beberapa fitur-fitur yang tersedia diantaranya:
+- Membuat lapak budidaya bisnis ikan
+- Mengelola data kolam beserta pemberian pakan dengan fitur "Rutin"
+- Membeli dan menjual hasil panen
+  
+
 ## Entitas dan Atribut
 ### Pengguna
 - ID
-- ID Hak Akses
-- Email
-- Kata sandi
-- Nama lengkap
-- Alamat
-- No telepon
-### Hak Akses
+- Nama Lengkap
+- Nomor Telepon
+- Tanggal Lahir
+- Dibuat Pada
+
+### Budidaya
 - ID
-- Nama Akses
-### Barang
+- Nama Budidaya
+- Jenis Budidaya
+  - Lele
+  - Gurame
+  - Nila
+- Alamat Budidaya
+- Kota / Kabupaten
+- Kecamatan
+- Desa / Kelurahan
+- Latitude
+- Longitude
+
+### Kolam
 - ID
-- ID Jenis
-- Gambar
+- ID Budidaya
+- Panjang Kolam
+- Lebar Kolam
+- Jumlah Ikan (optional)
+- Satuan Hitungan
+  - per ekor
+  - per kg
+- Suhu Air (optional)
+- PH Air (optional)
+- Apakah Aktif
+- Terakhir Diperbarui
+
+### Konsumsi Ikan
+- ID
+- Nama Konsumsi Ikan
+- Jumlah Konsumsi Ikan Saat Ini
+- Tipe Konsumsi Ikan 
+  - pakan
+  - obat
+- Satuan Hitungan
+  - kg
+  - liter
+- Harga (per kg, per liter)
+
+### Pemberian Konsumsi Ikan
+- ID
+- ID Kolam
+- ID Konsumsi Ikan
+- Tanggal Pemberian Konsumsi Ikan
+- Konsumsi Ikan yang Digunakan
+- Biaya digunakan
+
+### Rutin
+- ID
+- Nama Rutin (Optional)
+- Apakah Aktif
+
+### Aksi Rutin
+- ID
+- ID Rutin
+- ID Konsumsi Ikan
+- Nama Aksi `// contoh: pemberian pakan`
+- Konsumsi yang Digunakan
+
+### Kolam Rutin
+- ID
+- ID Rutin
+- ID Kolam
+
+### Waktu Rutin
+- ID
+- ID Rutin
+- Waktu Mulai
+
+### Katalog
+- ID
+- ID Budidaya
 - Nama Barang
+- Gambar
 - Harga
 - Stok Barang
+- Satuan Hitungan 
+  - per ekor
+  - per kg
+- Apakah Aktif
 - Deskripsi
-### Jenis Barang
-- ID
-- Nama Jenis
-### Status Pesanan
-- ID
-- Nama Status
-### Varian Barang
-- ID
-- ID Barang
-- Nama Varian
-- Gambar
-### Tipe Meja
-- ID
-- Nama Tipe
-### Meja
-- ID
-- ID Tipe Meja
-- ID Penjualan
-- Nomor Meja
-- Atas Nama
-- Maks Orang
-- Jumlah Orang
-- Waktu Pesanan
-### Penjualan
+
+### Transaksi
 - ID
 - ID Pengguna
-- ID Meja
-- ID Status
-- Atas Nama
-- Jumlah orang
-- Tanggal penjualan
+- Status
+  - Menunggu konfirmasi
+  - Sedang disiapkan
+  - Sedang dikirim
+  - Transaksi selesai
+  - Transaksi ditolak
+  - Transaksi dibatalkan
+- Tanggal Transaksi
 - Total
 - Keterangan
-### Detail Penjualan
+
+### Detail Transaksi
 - ID
-- ID Penjualan
-- ID Barang
+- ID Transaksi
+- ID Katalog
 - Nama Barang
+- Harga
 - Jumlah Barang
+- Satuan Hitungan 
+  - per ekor
+  - per kg
+- Deskripsi
