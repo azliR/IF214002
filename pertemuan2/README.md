@@ -1,11 +1,12 @@
 # Ide Solusi: Aplikasi Pengelola Budidaya dan Jual Beli Ikan
-![L](pertemuan2.drawio.svg)
 ## Deskripsi
 Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembudidayaan dan penjualan ikan. Beberapa fitur-fitur yang tersedia diantaranya:
 - Membuat lapak budidaya bisnis ikan
 - Mengelola data kolam 
 - Pemberian makan otomatis dengan fitur "Rutin"
 - Membeli dan menjual hasil panen
+
+![L](pertemuan2.drawio.svg)
 
 ## Entitas dan Atribut
 ### Pengguna
