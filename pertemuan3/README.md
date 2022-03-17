@@ -17,7 +17,7 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 
 ### Cultivations
 - \* ID
-- \* ID User
+- ID User
 - Name of cultivation
 - Cultivation type
   - Catfish
@@ -35,12 +35,13 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 
 ### Cultivation Phones
 - \* ID
+- ID Cultivation
 - Phone Number
 - Is primary
 
 ### Ponds
 - \* ID
-- \* ID Cultivation
+- ID Cultivation
 - Pond name (optional)
 - Length
 - Width
@@ -67,8 +68,8 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 
 ### Provision of Fish Needs
 - \* ID
-- \* ID Pond
-- \* ID Fish needs
+- ID Pond
+- ID Fish needs
 - Last used date
 - Amount used
 - Cost used
@@ -80,8 +81,8 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 
 ### Routine actions
 - \* ID
-- \* ID Routine
-- \* ID Fish needs
+- ID Routine
+- ID Fish needs
 - Action Name `// Example: feeding`
 - Needs used
 - Repeat
@@ -89,7 +90,7 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
   - everyday
   - weekdays
   - custom
-- Custom repeat
+- Custom repeat (optional)
     - monday
     - tuesday
     - wednesday
@@ -100,17 +101,17 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 
 ### Routine Ponds
 - \* ID
-- \* ID Routine
-- \* ID Pond
+- ID Routine
+- ID Pond
 
 ### Routine Times
 - \* ID
-- \* ID Routine
+- ID Routine
 - Start time
 
 ### Products
 - \* ID
-- \* ID Cultivation
+- ID Cultivation
 - Product name
 - Picture
 - Price
@@ -123,7 +124,7 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 
 ### Transactions
 - \* ID
-- \* ID User
+- ID User
 - Status
   - Waiting for confirmation
   - Preparing
@@ -137,8 +138,8 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 
 ### Transaction Details
 - \* ID
-- \* ID Transaction
-- \* ID Product
+- ID Transaction
+- ID Product
 - Product name
 - Price
 - Amount
