@@ -53,11 +53,11 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 - Is active
 - Last updated
 
-### Fish consumptions
+### Fish Needs
 - \* ID
-- Fish consumption name
+- Fish needs name
 - Stock
-- Fish consumption type
+- Fish needs type
   - feed
   - medicine
 - Count units
@@ -65,32 +65,45 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
   - litre
 - Prices per unit
 
-### Provision of Fish Consumptions
+### Provision of Fish Needs
 - \* ID
 - \* ID Pond
-- \* ID Fish consumption
+- \* ID Fish needs
 - Last used date
 - Amount used
 - Cost used
 
-### Routine
+### Routines
 - \* ID
 - Routine name (optional)
 - Is active
 
-### Routine action
+### Routine actions
 - \* ID
 - \* ID Routine
-- \* ID Fish consumption
+- \* ID Fish needs
 - Action Name `// Example: feeding`
-- Consumption used
+- Needs used
+- Repeat
+  - once
+  - everyday
+  - weekdays
+  - custom
+- Custom repeat
+    - monday
+    - tuesday
+    - wednesday
+    - thursday
+    - friday
+    - saturday
+    - sunday
 
-### Routine pool
+### Routine Ponds
 - \* ID
 - \* ID Routine
 - \* ID Pond
 
-### Routine time
+### Routine Times
 - \* ID
 - \* ID Routine
 - Start time
@@ -108,7 +121,7 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 - Description
 - Is active
 
-### Transaction
+### Transactions
 - \* ID
 - \* ID User
 - Status
@@ -133,3 +146,21 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
   - per head
   - per kg
 - Description
+
+## Relationships
+| Entity 1                | Relationship | Entity 2                |
+| ----------------------- | ------------ | ----------------------- |
+| Users                   | 1 1 - 0 N    | Cultivations            |
+| Cultivations            | 1 1 - 1 N    | Cultivation phones      |
+| Cultivations            | 1 1 - 0 N    | Products                |
+| Products                | 1 1 - 0 N    | Transaction Details     |
+| Transaction Details     | N 0 - 1 1    | Transactions            |
+| Transactions            | N 0 - 1 1    | Users                   |
+| Cultivations            | 1 1 - 0 N    | Ponds                   |
+| Ponds                   | 1 1 - 0 N    | Provision of Fish Needs |
+| Provision of Fish Needs | N 0 - 1 1    | Fish Needs              |
+| Fish Needs              | 1 1 - 0 N    | Routine actions         |
+| Routine actions         | N 1 - 1 1    | Routine                 |
+| Routine                 | 1 1 - 1 N    | Routine Times           |
+| Routine                 | 1 1 - 1 N    | Routine Ponds           |
+| Routine Ponds           | N 0 - 1 1    | Ponds                   |
