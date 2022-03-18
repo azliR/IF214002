@@ -1,10 +1,10 @@
 # Ide Solusi: Aplikasi Pengelola Budidaya dan Jual Beli Ikan
-![L](pertemuan3.drawio.svg)
+![ER Diagram](pertemuan3.drawio.svg)
 ## Deskripsi
 Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembudidayaan dan penjualan ikan. Beberapa fitur-fitur yang tersedia diantaranya:
 - Membuat lapak budidaya bisnis ikan
-- Mengelola data kolam 
-- Pemberian makan otomatis dengan fitur "Rutin"
+- Mengelola data kolam beserta sorting
+- Catat pemberian makan otomatis dengan fitur "Rutin"
 - Membeli dan menjual hasil panen
 
 ## Entitas dan Atribut
@@ -18,20 +18,26 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 ### Cultivations
 - \* ID
 - ID User
-- Name of cultivation
-- Cultivation type
-  - Catfish
-  - Gurame
-  - Nila
+- Name
+- Type
 - Street address
-- Country/Region
-- Province
-- Town/City
+- Country (/region)
+- State (/province)
+- City (/district)
 - Postcode
 - Latitude
 - Longitude
-- Description
+- Description (optional)
 - Is active
+
+### Cultivation Types
+- \* ID
+- Name
+
+### Cultivation Type L10ns
+- \* ID Cultivation Type
+- \* Language Code
+- Translation
 
 ### Cultivation Phones
 - \* ID
@@ -42,48 +48,57 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 ### Ponds
 - \* ID
 - ID Cultivation
-- Pond name (optional)
+- Name (optional)
 - Length
 - Width
-- Number of fish (optional)
+- Is active
+
+### Sorting
+- \* ID
+- ID Ponds initial (auto-update to nonactive)
+- ID Ponds destination (auto-update to active)
+- Start time
+- Fish total (optional)
 - Count units
   - per head
   - per kg
 - Water temperature (optional)
 - Water pH (optional)
-- Is active
-- Last updated
 
 ### Fish Needs
 - \* ID
-- Fish needs name
-- Stock
-- Fish needs type
+- Name
+- Type
   - feed
   - medicine
+- Stock
 - Count units
   - kg
   - litre
-- Prices per unit
+- Price per unit
 
 ### Provision of Fish Needs
 - \* ID
 - ID Pond
 - ID Fish needs
-- Last used date
+- Timestamp
 - Amount used
+- Count units
+  - kg
+  - litre
+- Price per unit
 - Cost used
 
 ### Routines
 - \* ID
-- Routine name (optional)
+- Name (optional)
 - Is active
 
 ### Routine actions
 - \* ID
 - ID Routine
 - ID Fish needs
-- Action Name `// Example: feeding`
+- Name `// Example: feeding`
 - Needs used
 - Repeat
   - once
@@ -91,13 +106,13 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
   - weekdays
   - custom
 - Custom repeat (optional)
+    - sunday
     - monday
     - tuesday
     - wednesday
     - thursday
     - friday
     - saturday
-    - sunday
 
 ### Routine Ponds
 - \* ID
@@ -113,13 +128,13 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 - \* ID
 - ID Cultivation
 - Product name
-- Picture
+- Picture URL
 - Price
 - Stock
 - Count units
   - per head
   - per kg
-- Description
+- Description (optional)
 - Is active
 
 ### Transactions
@@ -132,9 +147,9 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
   - Completed
   - Rejected
   - Canceled
-- Date
+- Timestamp
 - Total
-- Description
+- Description (optional)
 
 ### Transaction Details
 - \* ID
@@ -146,18 +161,21 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 - Count units
   - per head
   - per kg
-- Description
+- Description (optional)
 
 ## Relationships
 | Entity 1                | Relationship | Entity 2                |
 | ----------------------- | ------------ | ----------------------- |
 | Users                   | 1 1 - 0 N    | Cultivations            |
 | Cultivations            | 1 1 - 1 N    | Cultivation phones      |
+| Cultivations            | N 0 - 1 1    | Cultivation types       |
+| Cultivations types      | 1 1 - 0 N    | Cultivation types L10ns |
 | Cultivations            | 1 1 - 0 N    | Products                |
 | Products                | 1 1 - 0 N    | Transaction Details     |
-| Transaction Details     | N 0 - 1 1    | Transactions            |
+| Transaction Details     | N 1 - 1 1    | Transactions            |
 | Transactions            | N 0 - 1 1    | Users                   |
 | Cultivations            | 1 1 - 0 N    | Ponds                   |
+| Ponds                   | N 1 - 0 N    | Sorting                 |
 | Ponds                   | 1 1 - 0 N    | Provision of Fish Needs |
 | Provision of Fish Needs | N 0 - 1 1    | Fish Needs              |
 | Fish Needs              | 1 1 - 0 N    | Routine actions         |
