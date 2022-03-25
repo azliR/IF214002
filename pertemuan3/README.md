@@ -7,6 +7,9 @@ Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembu
 - Catat pemberian makan otomatis dengan fitur "Rutin"
 - Membeli dan menjual hasil panen
 
+### Rancangan Tambahan
+![ER Diagram](../tambahan/ERD.svg)
+
 ## Entitas dan Atribut
 ### Users
 - \* ID
