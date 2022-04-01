@@ -5,7 +5,7 @@ Aplikasi ini berfokus untuk membuka peluang usaha di sebuah restoran atau drive-
 - Melihat keadaan restoran apakah sedang penuh pelanggan atau kosong
 - Memesan dengan cepat langsung dari aplikasi dan ambil saat itu juga atau sesuai schedule yang ditentukan tanpa lama menunggu
 
-![L](pertemuan2.drawio.svg)
+![L](pertemuan3.drawio.svg)
 
 ## Entitas dan Atribut
 ### Pengguna
