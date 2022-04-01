@@ -1,128 +1,166 @@
-# Ide Solusi: Aplikasi Pengelola Budidaya dan Jual Beli Ikan
+# Ide Solusi: Aplikasi Restoran
 ## Deskripsi
-Aplikasi ini dirancang untuk mempermudah dalam melakukan pengelolaan dalam pembudidayaan dan penjualan ikan. Beberapa fitur-fitur yang tersedia diantaranya:
-- Membuat lapak budidaya bisnis ikan
-- Mengelola data kolam 
-- Pemberian makan otomatis dengan fitur "Rutin"
-- Membeli dan menjual hasil panen
+Aplikasi ini berfokus untuk membuka peluang usaha di sebuah restoran atau drive-through. Beberapa fitur yang menjadi poin penting aplikasi in diantaranya:
+- Memudahkan dalam pemesanan pada saat ingin melakukan booking meja
+- Melihat keadaan restoran apakah sedang penuh pelanggan atau kosong
+- Memesan dengan cepat langsung dari aplikasi dan ambil saat itu juga atau sesuai schedule yang ditentukan tanpa lama menunggu
 
 ![L](pertemuan2.drawio.svg)
 
 ## Entitas dan Atribut
 ### Pengguna
 - ID
-- Nama Lengkap
-- Nomor Telepon
-- Tanggal Lahir
-- Dibuat Pada
+- Full name
+- Phone
+- Language code
+- Created at
+- Last updated at
 
-### Budidaya
+### Stores
 - ID
-- ID Pengguna
-- Nama Budidaya
-- Jenis Budidaya
-  - Lele
-  - Gurame
-  - Nila
-- Alamat Budidaya
-- Kota / Kabupaten
-- Kecamatan
-- Desa / Kelurahan
+- User ID
+- Name
+- Description
+- Image
+- Banner
+- Phone
+- Pickup type
+- Street address
+- Country
+- State
+- City
+- Area
+- Postcode
 - Latitude
 - Longitude
+- Rating
+- Is active
 
-### Kolam
+### Items
 - ID
-- ID Budidaya
-- Nama Kolam (optional)
-- Panjang Kolam
-- Lebar Kolam
-- Jumlah Ikan (optional)
-- Satuan Hitungan
-  - per ekor
-  - per kg
-- Suhu Air (optional)
-- PH Air (optional)
-- Apakah Aktif
-- Terakhir Diperbarui
+- Store ID
+- Category ID
+- Sub category ID
+- Name
+- Picture
+- Price
+- Special offer
+- Description
+- Is active
 
-### Konsumsi Ikan
+### Item Categories
 - ID
-- Nama Konsumsi Ikan
-- Jumlah saat ini
-- Tipe Konsumsi Ikan
-  - pakan
-  - obat
-- Satuan Hitungan
-  - kg
-  - liter
-- Harga per satuan
+- Name
 
-### Pemberian Konsumsi Ikan
-- ID
-- ID Kolam
-- ID Konsumsi Ikan
-- Tanggal Pemberian
-- Banyaknya digunakan
-- Biaya digunakan
+### Item Category L10ns
+- Category ID
+- Langauge Code
+- Name
 
-### Rutin
+### Item Sub Categories
 - ID
-- Nama Rutin (Optional)
-- Apakah Aktif
+- Name
 
-### Aksi Rutin
-- ID
-- ID Rutin
-- ID Konsumsi Ikan
-- Nama Aksi `// contoh: pemberian pakan, pemberian obat`
-- Konsumsi yang Digunakan
+### Item Sub Category L10ns
+- Sub Category ID
+- Langauge Code
+- Name
 
-### Kolam Rutin
+### Item Addon Categories
 - ID
-- ID Rutin
-- ID Kolam
+- Item ID
+- Name
+- Description
+- Is multiple choice
 
-### Waktu Rutin
+### Item Addons
 - ID
-- ID Rutin
-- Waktu Mulai
+- Addon Category ID
+- Name
+- Price
 
-### Katalog
+### Orders
 - ID
-- ID Budidaya
-- Nama Barang
-- Gambar
-- Harga
-- Stok
-- Satuan Hitungan 
-  - per ekor
-  - per kg
-- Apakah Aktif
-- Deskripsi
-
-### Transaksi
-- ID
-- ID Pengguna
+- User ID
+- Store ID
+- Table ID
+- Coupon ID
+- Buyer
+- Store image
+- Store banner
+- Created at
+- Coupon code
+- Coupon name
+- Discount
+- Discount nominal
+- Netto
+- Brutto
 - Status
-  - Menunggu konfirmasi
-  - Sedang disiapkan
-  - Sedang dikirim
-  - Transaksi selesai
-  - Transaksi ditolak
-  - Transaksi dibatalkan
-- Tanggal Transaksi
-- Total
-- Keterangan
+  - Pending
+  - Preparing
+  - Ready
+  - Complete
+  - Cancelled
+- Order type
+  - Scheduled
+  - Now
+- Scheduled at
+- Pickup type
+  - Dine-in
+  - Pickup
+- Rating
+- Comment
 
-### Detail Transaksi
+### Order Details
 - ID
-- ID Transaksi
-- ID Katalog
-- Nama Barang
-- Harga
-- Jumlah Barang
-- Satuan Hitungan 
-  - per ekor
-  - per kg
-- Deskripsi
+- Order ID
+- Item ID
+- Item name
+- Quantity
+- Price
+- Netto
+- Picture
+- Item detail
+
+### Order Detail Addons
+- ID
+- Order detail ID
+- Addon ID
+- Addon name
+- Quantity
+- Price
+
+### Tables
+- ID
+- Store ID
+- Name
+- Max person
+- Total person
+- Book price
+
+### Coupons
+- ID
+- Inserted by
+- Coupon code
+- Name
+- Description
+- Expiry date
+- Discount type
+  - Fixed
+  - Percentage
+- Discount
+- Min total
+- Max discount
+- Max number use total
+- Max number use user
+- Created at
+- All store
+- Is valid
+
+### Coupon Users
+- Coupon ID
+- User ID
+
+### Coupon Stores
+- Coupon ID
+- Store ID
