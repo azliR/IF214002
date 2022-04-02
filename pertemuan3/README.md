@@ -1,14 +1,34 @@
 # Ide Solusi: Aplikasi Restoran
+
+## Changelog
+
+Lihat di [halaman utama](../README.md)
+
 ## Deskripsi
-Aplikasi ini berfokus untuk membuka peluang usaha di sebuah restoran atau drive-through. Beberapa fitur yang menjadi poin penting aplikasi in diantaranya:
+
+Aplikasi ini berfokus untuk membuka peluang usaha di sebuah restoran atau drive-through. Beberapa fitur yang menjadi
+poin penting aplikasi in diantaranya:
+
 - Memudahkan dalam pemesanan pada saat ingin melakukan booking meja
 - Melihat keadaan restoran apakah sedang penuh pelanggan atau kosong
-- Memesan dengan cepat langsung dari aplikasi dan ambil saat itu juga atau sesuai schedule yang ditentukan tanpa lama menunggu
+- Memesan dengan cepat langsung dari aplikasi dan ambil saat itu juga atau sesuai schedule yang ditentukan tanpa lama
+  menunggu
 
-![L](pertemuan3.drawio.svg)
+## Diagram
+
+Diagram pertemuan ini:
+![Diagram ER Konseptual v0.3](pertemuan3.drawio.svg)
+
+<details>
+<summary>Lihat diagram pertemuan sebelumnya</summary>
+
+![Diagram v0.2](../pertemuan2/pertemuan2.drawio.svg)
+</details>
 
 ## Entitas dan Atribut
+
 ### Pengguna
+
 - ID
 - Full name
 - Phone
@@ -164,24 +184,3 @@ Aplikasi ini berfokus untuk membuka peluang usaha di sebuah restoran atau drive-
 ### Coupon Stores
 - Coupon ID
 - Store ID
-
-## Relationships
-| Entity 1                | Relationship | Entity 2                |
-| ----------------------- | ------------ | ----------------------- |
-| Users                   | 1 1 - 0 N    | Cultivations            |
-| Cultivations            | 1 1 - 1 N    | Cultivation phones      |
-| Cultivations            | N 0 - 1 1    | Cultivation types       |
-| Cultivations types      | 1 1 - 0 N    | Cultivation types L10ns |
-| Cultivations            | 1 1 - 0 N    | Products                |
-| Products                | 1 1 - 0 N    | Transaction Details     |
-| Transaction Details     | N 1 - 1 1    | Transactions            |
-| Transactions            | N 0 - 1 1    | Users                   |
-| Cultivations            | 1 1 - 0 N    | Ponds                   |
-| Ponds                   | N 1 - 0 N    | Sorting                 |
-| Ponds                   | 1 1 - 0 N    | Provision of Fish Needs |
-| Provision of Fish Needs | N 0 - 1 1    | Fish Needs              |
-| Fish Needs              | 1 1 - 0 N    | Routine actions         |
-| Routine actions         | N 1 - 1 1    | Routine                 |
-| Routine                 | 1 1 - 1 N    | Routine Times           |
-| Routine                 | 1 1 - 1 N    | Routine Ponds           |
-| Routine Ponds           | N 0 - 1 1    | Ponds                   |
