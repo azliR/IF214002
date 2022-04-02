@@ -1,14 +1,27 @@
 # Ide Solusi: Aplikasi Restoran
+
+## Changelog
+
+Lihat di [halaman utama](../README.md)
+
 ## Deskripsi
-Aplikasi ini berfokus untuk membuka peluang usaha di sebuah restoran atau drive-through. Beberapa fitur yang menjadi poin penting aplikasi in diantaranya:
+
+Aplikasi ini berfokus untuk membuka peluang usaha di sebuah restoran atau drive-through. Beberapa fitur yang menjadi
+poin penting aplikasi in diantaranya:
+
 - Memudahkan dalam pemesanan pada saat ingin melakukan booking meja
 - Melihat keadaan restoran apakah sedang penuh pelanggan atau kosong
-- Memesan dengan cepat langsung dari aplikasi dan ambil saat itu juga atau sesuai schedule yang ditentukan tanpa lama menunggu
+- Memesan dengan cepat langsung dari aplikasi dan ambil saat itu juga atau sesuai schedule yang ditentukan tanpa lama
+  menunggu
 
-![L](pertemuan2.drawio.svg)
+## Diagram
+
+![Diagram v0.2](pertemuan2.drawio.svg)
 
 ## Entitas dan Atribut
+
 ### Pengguna
+
 - ID
 - Full name
 - Phone
