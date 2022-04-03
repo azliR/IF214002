@@ -39,12 +39,12 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 - ⚡ Instalasi Diagrams.net
 - ⚡ Instalasi Docker
 - ⚡ Instalasi DBeaver
-- 🆕 `CREATE` `DIAGRAM`: pembuatan contoh diagram ERD
+- `CREATE`: 🆕 Membuat contoh diagram ERD
 
 ### [Pertemuan 2](pertemuan2)
 
-- 🆕 `CREATE` `README.md`: pembuatan rancangan aplikasi berupa deskripsi dan atribut yang dibutuhkan
-- 🆕 `CREATE` `DIAGRAM`: pembuatan diagram untuk rancangan aplikasi
+- `CREATE`: 🆕 Membuat rancangan aplikasi berupa deskripsi dan atribut yang dibutuhkan
+- `CREATE`: 🆕 Membuat diagram untuk rancangan aplikasi
 
 <details>
   <summary>Hasil praktikum (klik untuk membuka)</summary>
@@ -54,8 +54,8 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 ### [Pertemuan 3](pertemuan3)
 
-- 🆕 `CREATE` `DIAGRAM`: pembuatan rancangan aplikasi berupa diagram ER konseptual
-- 🚀 `UPDATE` `README.md`: penambahan cardinality dan optionality dari diagram sebelumnya
+- `CREATE`: 🆕 Membuat rancangan aplikasi berupa diagram ER konseptual
+- `UPDATE`: 🚀 Menambahkan cardinality dan optionality dari diagram sebelumnya
 
 <details>
   <summary>Hasil praktikum (klik untuk membuka)</summary>
@@ -65,9 +65,9 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 ### [Pertemuan 4](pertemuan4)
 
-- 🚀 `UPDATE` `README.md`: penambahan primary key dan composite key pada rancangan aplikasi
-- 🚀 `UPDATE` `README.md`: penambahan relasi antar entitas pada rancangan aplikasi
-- 🚀 `UPDATE` `DIAGRAM`: mengubah diagram ER konseptual menjadi logical
+- `UPDATE`: 🚀 Menambahkan primary key dan composite key pada rancangan aplikasi
+- `UPDATE`: 🚀 Menambahkan relasi antar entitas pada rancangan aplikasi
+- `UPDATE`: 🚀 Mengubah diagram ER konseptual menjadi logical
 
 <details>
   <summary>Hasil praktikum (klik untuk membuka)</summary>
@@ -77,11 +77,11 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 ### [Pertemuan 5](pertemuan5)
 
-- 🛠️ `UPDATE` `DIAGRAM`: memperbaiki beberapa optinality yang salah di beberapa entity
-- ✨ `UPDATE` `DIAGRAM`: mengubah tema diagram agar terlihat lebih rapi
-- ✨ `UPDATE` `README.md`: merapikan README.md
-  - 🚀 Penambahan changelog untuk setiap pertemuan
-  - 🚀 Penambahan gambar pertemuan sebelumnya untuk memudahkan perbandingan
+- `UPDATE`: 🛠️ Memperbaiki beberapa optinality yang salah di beberapa entity
+- `UPDATE`: ✨ Mengubah tema diagram agar terlihat lebih rapi
+- `UPDATE`: ✨ Merapikan README.md
+  - 🚀 Menambahkan changelog untuk setiap pertemuan
+  - 🚀 Menambahkan gambar pertemuan sebelumnya untuk memudahkan perbandingan
 
 <details>
   <summary>Hasil praktikum (klik untuk membuka)</summary>
