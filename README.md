@@ -2,6 +2,8 @@
 
 Repository pembelajaran Basis Data.
 
+**Desain rancangan aplikasi Restaurant: [Lihat di Figma](https://www.figma.com/file/mSg8BptH9SvTrdNxcMvQEN/Material-3-Design-Kit-(Community)?node-id=11%3A1833)**
+
 # Aplikasi Restoran
 
 ## Deskripsi
