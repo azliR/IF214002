@@ -23,6 +23,7 @@ poin penting aplikasi in diantaranya:
   - [Pertemuan 3](#pertemuan-3)
   - [Pertemuan 4](#pertemuan-4)
   - [Pertemuan 5](#pertemuan-5)
+  - [Pertemuan 6](#pertemuan-6)
 - [Diagram](#diagram)
 - [Entitas dan Atribut](#entitas-dan-atribut)
 - [Relasi Entitas](#relasi-entitas)
@@ -34,17 +35,17 @@ _⚠️ Note :
 File gambar berekstensi .svg dengan tujuan agar file menjadi ringan dan tidak pecah. Untuk bisa memperbesar, klik kanan
 pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
-### [Pertemuan 1](pertemuan1)
+#### [Pertemuan 1](pertemuan1)
 
 - ⚡ Instalasi Diagrams.net
 - ⚡ Instalasi Docker
 - ⚡ Instalasi DBeaver
-- `CREATE`: 🆕 Membuat contoh diagram ERD
+- 🆕 Membuat contoh diagram ERD
 
-### [Pertemuan 2](pertemuan2)
+#### [Pertemuan 2](pertemuan2)
 
-- `CREATE`: 🆕 Membuat rancangan aplikasi berupa deskripsi dan atribut yang dibutuhkan
-- `CREATE`: 🆕 Membuat diagram untuk rancangan aplikasi
+- 🆕 Membuat rancangan aplikasi berupa deskripsi dan atribut yang dibutuhkan
+- 🆕 Membuat diagram untuk rancangan aplikasi
 
 <details>
   <summary>Hasil praktikum (klik untuk membuka)</summary>
@@ -54,8 +55,8 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 ### [Pertemuan 3](pertemuan3)
 
-- `CREATE`: 🆕 Membuat rancangan aplikasi berupa diagram ER konseptual
-- `UPDATE`: 🚀 Menambahkan cardinality dan optionality dari diagram sebelumnya
+- 🆕 Membuat rancangan aplikasi berupa diagram ER konseptual
+- 🚀 Menambahkan cardinality dan optionality dari diagram sebelumnya
 
 <details>
   <summary>Hasil praktikum (klik untuk membuka)</summary>
@@ -65,9 +66,9 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 ### [Pertemuan 4](pertemuan4)
 
-- `UPDATE`: 🚀 Menambahkan primary key dan composite key pada rancangan aplikasi
-- `UPDATE`: 🚀 Menambahkan relasi antar entitas pada rancangan aplikasi
-- `UPDATE`: 🚀 Mengubah diagram ER konseptual menjadi logical
+- 🚀 Menambahkan primary key dan composite key pada rancangan aplikasi
+- 🚀 Menambahkan relasi antar entitas pada rancangan aplikasi
+- 🚀 Mengubah diagram ER konseptual menjadi logical
 
 <details>
   <summary>Hasil praktikum (klik untuk membuka)</summary>
@@ -77,9 +78,9 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 ### [Pertemuan 5](pertemuan5)
 
-- `UPDATE`: 🛠️ Memperbaiki beberapa optinality yang salah di beberapa entity
-- `UPDATE`: ✨ Mengubah tema diagram agar terlihat lebih rapi
-- `UPDATE`: ✨ Merapikan README.md
+- 🛠️ Memperbaiki beberapa optinality yang salah di beberapa entity
+- ✨ Mengubah tema diagram agar terlihat lebih rapi
+- ✨ Merapikan README.md
   - 🚀 Menambahkan changelog untuk setiap pertemuan
   - 🚀 Menambahkan gambar pertemuan sebelumnya untuk memudahkan perbandingan
 
@@ -91,15 +92,21 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 ### [Pertemuan 6](pertemuan6)
 
+- ✨ Mengganti tipe data dari `BINARY(16)` menjadi `UUID` agar lebih umum dan jelas
+- ✨ Mengganti tipe data dari `TINYINT(1)` menjadi `BOOLEAN` agar lebih umum dan jelas
+- 🚀 Normalilasi Tabel! 🔥🔥🔥🔥
+  - 🚀 Menghapus atribut `total_person` karena tidak diperlukan
+- 🚀 Sinkronisasi README.md dengan diagram ER
+
 <details>
   <summary>Hasil praktikum (klik untuk membuka)</summary>
 
-[//]: # (Hasil praktikum: ![Diagram ER Logical v0.6]&#40;pertemuan6/pertemuan6.drawio.svg&#41;)
+![Diagram ER Logical v0.6](pertemuan6/pertemuan6.drawio.svg)
 </details>
 
 ## Diagram
 
-![Diagram ER Logical v0.5](/pertemuan5/pertemuan5.drawio.svg)
+![Diagram ER Logical v0.6](/pertemuan6/pertemuan6.drawio.svg)
 
 ## Entitas dan Atribut
 
@@ -254,7 +261,7 @@ _\** composite key_
 
 - \* ID
 - Inserted by
-- Coupon code
+- \** Coupon code
 - Name
 - Description
 - Expiry date
@@ -268,7 +275,7 @@ _\** composite key_
 - Max number use user
 - Created at
 - All store
-- Is valid
+- \** Is valid
 
 ### Coupon Users
 
@@ -308,7 +315,9 @@ _\** composite key_
 
 ## Profil
 
-Nama: Rizal Hadiyansah  
-NIM: 1207050109  
-Kelas: IF E  
-Universitas: UIN Sunan Gunung Djati
+```
+Nama        : Rizal Hadiyansah  
+NIM         : 1207050109  
+Kelas       : IF E  
+Universitas : UIN Sunan Gunung Djati
+```
