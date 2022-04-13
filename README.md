@@ -9,8 +9,8 @@ Repository pembelajaran Basis Data.
 Aplikasi ini berfokus untuk membuka peluang usaha di sebuah restoran atau drive-through. Beberapa fitur yang menjadi
 poin penting aplikasi in diantaranya:
 
-- Memudahkan dalam pemesanan pada saat ingin melakukan booking meja
 - Melihat keadaan restoran apakah sedang penuh pelanggan atau kosong
+- Memudahkan dalam pemesanan pada saat ingin melakukan booking meja
 - Memesan dengan cepat langsung dari aplikasi dan ambil saat itu juga atau sesuai schedule yang ditentukan tanpa lama
   menunggu
 
@@ -35,14 +35,14 @@ _⚠️ Note :
 File gambar berekstensi .svg dengan tujuan agar file menjadi ringan dan tidak pecah. Untuk bisa memperbesar, klik kanan
 pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
-#### [Pertemuan 1](pertemuan1)
+### [Pertemuan 1](pertemuan1)
 
 - ⚡ Instalasi Diagrams.net
 - ⚡ Instalasi Docker
 - ⚡ Instalasi DBeaver
 - 🆕 Membuat contoh diagram ERD
 
-#### [Pertemuan 2](pertemuan2)
+### [Pertemuan 2](pertemuan2)
 
 - 🆕 Membuat rancangan aplikasi berupa deskripsi dan atribut yang dibutuhkan
 - 🆕 Membuat diagram untuk rancangan aplikasi
@@ -94,9 +94,14 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 - ✨ Mengganti tipe data dari `BINARY(16)` menjadi `UUID` agar lebih umum dan jelas
 - ✨ Mengganti tipe data dari `TINYINT(1)` menjadi `BOOLEAN` agar lebih umum dan jelas
+- 🆕 Menambahkan atribut `role` pada tabel `users`
+- 🆕 Menambahkan tabel `roles`
+- 🛠️ Menghapus atribut `last_updated` pada tabel `users`
 - 🚀 Normalilasi Tabel! 🔥🔥🔥🔥
   - 🚀 Menghapus atribut `total_person` karena tidak diperlukan
+  - 🚀 Memerdekakan kolom yang bergantung pada `postcode` menjadi tabel `postcodes`
 - 🚀 Sinkronisasi README.md dengan diagram ER
+- 🆕 Menambahkan file `restaurant.sql` yang berisi kode SQL untuk pembuatan tabel-tabel menggunakan MariaDB
 
 <details>
   <summary>Hasil praktikum (klik untuk membuka)</summary>
@@ -112,16 +117,20 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 _Note:_  
 _\* primary key_  
-_\** composite key_
+_\*\* composite key_
 
-### Pengguna
+### Users
 
 - \* ID
 - Full name
 - Phone
 - Language code
+- Role
 - Created at
-- Last updated at
+
+### Roles
+
+- \* Name
 
 ### Stores
 
@@ -134,15 +143,19 @@ _\** composite key_
 - Phone
 - Pickup type
 - Street address
-- Country
-- State
-- City
 - Area
 - Postcode
 - Latitude
 - Longitude
 - Rating
 - Is active
+
+### Postcodes
+
+- Postcode
+- City
+- State
+- Country
 
 ### Items
 
@@ -158,29 +171,24 @@ _\** composite key_
 - Is active
 
 ### Item Categories
-
 - \* ID
 - Name
 
 ### Item Category L10ns
-
 - \** Category ID
 - \** Langauge Code
 - Name
 
 ### Item Sub Categories
-
 - \* ID
 - Name
 
 ### Item Sub Category L10ns
-
 - \** Sub Category ID
 - \** Langauge Code
 - Name
 
 ### Item Addon Categories
-
 - \* ID
 - \* Item ID
 - Name
@@ -188,14 +196,12 @@ _\** composite key_
 - Is multiple choice
 
 ### Item Addons
-
 - \* ID
 - Addon Category ID
 - Name
 - Price
 
 ### Orders
-
 - \* ID
 - User ID
 - Store ID
@@ -228,7 +234,6 @@ _\** composite key_
 - Comment
 
 ### Order Details
-
 - \* ID
 - Order ID
 - Item ID
@@ -240,7 +245,6 @@ _\** composite key_
 - Item detail
 
 ### Order Detail Addons
-
 - \* ID
 - Order detail ID
 - Addon ID
@@ -249,16 +253,13 @@ _\** composite key_
 - Price
 
 ### Tables
-
 - \* ID
 - Store ID
 - Name
 - Max person
-- Total person
 - Book price
 
 ### Coupons
-
 - \* ID
 - Inserted by
 - \** Coupon code
@@ -278,12 +279,10 @@ _\** composite key_
 - \** Is valid
 
 ### Coupon Users
-
 - \** Coupon ID
 - \** User ID
 
 ### Coupon Stores
-
 - \** Coupon ID
 - \** Store ID
 
@@ -298,6 +297,7 @@ _\** composite key_
 |        Stores         | 1 1 - 0 N |         Orders          |
 |        Stores         | 1 1 - 0 N |         Tables          |
 |        Stores         | 1 1 - 0 N |          Items          |
+|       Postcodes       | 1 1 - 0 N |         Stores          |
 |         Items         | 1 1 - 0 N |      Order Details      |
 |         Items         | N 0 - 1 1 |     Item Categories     |
 |         Items         | N 0 - 0 1 |   Item Sub Categories   |
