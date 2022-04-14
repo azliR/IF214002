@@ -14,7 +14,7 @@ Jawab:
 
 ## ERD
 
-![ERD](ERD%20Data%20Karyawan.svg)
+![ERD](ERD%20Data%20Karyawan.drawio.svg)
 
 - Karyawan
 
