@@ -24,6 +24,7 @@ poin penting aplikasi in diantaranya:
   - [Pertemuan 4](#pertemuan-4)
   - [Pertemuan 5](#pertemuan-5)
   - [Pertemuan 6](#pertemuan-6)
+  - [Pertemuan 7](#pertemuan-7)
 - [Diagram](#diagram)
 - [Entitas dan Atribut](#entitas-dan-atribut)
 - [Relasi Entitas](#relasi-entitas)
@@ -108,6 +109,8 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 ![Diagram ER Logical v0.6](pertemuan6/pertemuan6.drawio.svg)
 </details>
+
+### [Pertemuan 7](pertemuan7)
 
 ## Diagram
 
