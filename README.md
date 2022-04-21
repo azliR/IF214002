@@ -25,6 +25,7 @@ poin penting aplikasi in diantaranya:
   - [Pertemuan 5](#pertemuan-5)
   - [Pertemuan 6](#pertemuan-6)
   - [Pertemuan 7](#pertemuan-7)
+  - [UTS](#uts)
 - [Diagram](#diagram)
 - [Entitas dan Atribut](#entitas-dan-atribut)
 - [Relasi Entitas](#relasi-entitas)
@@ -49,7 +50,7 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 - 🆕 Membuat diagram untuk rancangan aplikasi
 
 <details>
-  <summary>Hasil praktikum (klik untuk membuka)</summary>
+  <summary>Diagram hasil praktikum (klik untuk membuka)</summary>
 
 ![Diagram v0.2](pertemuan2/pertemuan2.drawio.svg)
 </details>
@@ -60,7 +61,7 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 - 🚀 Menambahkan cardinality dan optionality dari diagram sebelumnya
 
 <details>
-  <summary>Hasil praktikum (klik untuk membuka)</summary>
+  <summary>Diagram hasil praktikum (klik untuk membuka)</summary>
 
 ![Diagram ER Konseptual v0.3](pertemuan3/pertemuan3.drawio.svg)
 </details>
@@ -72,7 +73,7 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 - 🚀 Mengubah diagram ER konseptual menjadi logical
 
 <details>
-  <summary>Hasil praktikum (klik untuk membuka)</summary>
+  <summary>Diagram hasil praktikum (klik untuk membuka)</summary>
 
 ![Diagram ER Logical v0.4](pertemuan4/pertemuan4.drawio.svg)
 </details>
@@ -86,7 +87,7 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
   - 🚀 Menambahkan gambar pertemuan sebelumnya untuk memudahkan perbandingan
 
 <details>
-  <summary>Hasil praktikum (klik untuk membuka)</summary>
+  <summary>Diagram hasil praktikum (klik untuk membuka)</summary>
 
 ![Diagram ER Logical v0.5](pertemuan5/pertemuan5.drawio.svg)
 </details>
@@ -105,12 +106,24 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 - 🆕 Menambahkan file `restaurant.sql` yang berisi kode SQL untuk pembuatan tabel-tabel menggunakan MariaDB
 
 <details>
-  <summary>Hasil praktikum (klik untuk membuka)</summary>
+  <summary>Diagram hasil praktikum (klik untuk membuka)</summary>
 
 ![Diagram ER Logical v0.6](pertemuan6/pertemuan6.drawio.svg)
 </details>
 
 ### [Pertemuan 7](pertemuan7)
+
+Quiz 1 jam. Lihat [soal dan jawaban]([Pertemuan 7](pertemuan7)).
+
+<details>
+  <summary>Diagram hasil praktikum (klik untuk membuka)</summary>
+
+![Diagram ER Logical v0.6](pertemuan7/ERD Data Karyawan.drawio.svg)
+</details>
+
+### [Pertemuan 8 (UTS)](uts)
+
+UTS
 
 ## Diagram
 
