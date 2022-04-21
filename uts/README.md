@@ -31,33 +31,44 @@ Rancangan database (ERD atau Class Diagram) sangat penting dalam membangun basis
 ### Cara mentransformasikan proses bisnis sebuah organisasi menjadi struktur data
 
 Untuk mentransformasikan proses bisnis sebuah organisasi menjadi struktur data di basis data dapat dimulai dengan
-membangun perancangan basis data tersebut.
+membangun perancangan basis data. Dari pemikiran pribadi saya, terdapat beberapa poin penting, diantaranya:
+
+- Dalam membangun perancangan basis data ini dapat dilakukan dengan diagram ER.
+- Jika terlalu sulit, dapat dimulai dari flowchart yang akan menjelaskan alur dari bisnis secara umum.
+- Kemudian setelah semuanya tergambar, dapat dilakukan perancangan diagram ER dengan menentukan entitas, atribut, dan
+  relasi yang ada.
+- Selalu cek entitas, atribut, dan relasi yang ada pada diagram ER tersebut agar sesuai dengan desain bisnis.
+- Lakukan normalisasi atau bahkan denormalisasi sehingga rancangan basis data tersebut dibuat seefisien mungkin.
+- Lengkapi atribut dengan tipe data yang sesuai dan efisien.
+- Setelah semuanya dirasa cukup, pembuatan database dapat dilakukan.
 
 ### Solusi digital: Aplikasi Restoran
 
 #### Deskripsi
 
-Terkadang kita ingin pergi ke suatu restoran atau sedang kumpul bersama teman-teman dan ingin memesan makanan. Apa yang
-pertama di benak kita? Apakah tempatnya rame? Apakah masih tersedia meja untuk dipesan? Aplikasi restoran ini menjawab
+Terkadang kita ingin pergi ke suatu restoran atau sedang kumpul bersama teman-teman dan ingin memesan makanan bersama
+disana, apa yang
+pertama di benak kita? Apakah tempatnya ramai? Apakah masih tersedia meja untuk dipesan? Aplikasi restoran ini menjawab
 pertanyaan-pertanyaan tersebut. Dengan aplikasi restoran pelanggan dapat melihat status restoran yang ingin dipesan
 apakah ramai pembeli, apakah meja masih tersedia, apakah makanan tersedia, dan sebagainya hanya melalui aplikasi.
-Pelanggan hanya perlu datang ke restoran dan menunjukkan kode QR unik untuk mengambil pesanan, tanpa perlu repot
+Pelanggan hanya perlu memesan makanan dari aplikasi dan datang ke restoran untuk mengambil pesanan hanya dengan
+menunjukkan kode QR unik, tanpa perlu repot
 mengantri.
 
 #### Fitur-fitur
 
 - Pencarian restoran terdekat dengan lokasi pelanggan.
-- Melihat antrian dan status meja yang tersedia tanpa harus mengunjungi restoran terlebih dahulu
+- Melihat antrian dan status meja yang tersedia tanpa harus mengunjungi restoran terlebih dahulu.
 - Mempermudah melakukan pemesanan makanan atau minuman secara langsung dari aplikasi, beserta varian yang tersedia (jika
   ada).
-- Memesan secara terjadwal, pesan sekarang ambil beberapa jam kemudian
+- Memesan secara terjadwal, pesan sekarang ambil beberapa jam kemudian.
 - Mempermudah melihat daftar order, baik itu pesanan yang masih menunggu konfirmasi, dan sedang disiapkan; sampai
   pesanan yang sudah selesai, pesanan ditolak, dan pesanan dibatalkan.
-
-#### ERD Notasi Crow Foot
-
-![ERD Notasi Crow Foot](uts_erd_crowfoot.drawio.svg)
 
 #### ERD Notasi Chen
 
 ![ERD Notasi Chen](uts_erd_chen.drawio.svg)
+
+#### ERD Notasi Crow Foot
+
+![ERD Notasi Crow Foot](uts_erd_crowfoot.drawio.svg)
