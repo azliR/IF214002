@@ -17,12 +17,12 @@ poin penting aplikasi in diantaranya:
 ## Diagram
 
 Diagram pertemuan ini:
-![Diagram ER Logical v0.5](pertemuan5.drawio.svg)
+![Diagram ER Logical v0.6](pertemuan6.drawio.svg)
 
 <details>
 <summary>Lihat diagram pertemuan sebelumnya</summary>
 
-![Diagram ER Logical v0.4](../pertemuan4/pertemuan4.drawio.svg)
+![Diagram ER Logical v0.6](../pertemuan5/pertemuan5.drawio.svg)
 </details>
 
 ## Entitas dan Atribut
@@ -207,7 +207,7 @@ _\** composite key_
 ## Relasi Entitas
 
 |       Entitas 1       |  Relasi   |        Entitas 2        |
-|:---------------------:|:---------:|:-----------------------:|
+| :-------------------: | :-------: | :---------------------: |
 |         Users         | 1 1 - 0 1 |         Stores          |
 |         Users         | 1 1 - 0 N |      Coupon Users       |
 |         Users         | 1 1 - 0 N |         Coupons         |
