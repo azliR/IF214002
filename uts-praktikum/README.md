@@ -46,223 +46,231 @@ Perintah TCL menangani transaksi dalam database. Transaksi disini adalah ketika 
 - `SET TRANSACTION`: Menentukan karakteristik untuk transaksi.
 
 ### PostgreSQL Query Aplikasi Restoran
-```postgresql
-CREATE TABLE coupons (
-   id UUID NOT NULL,
-   inserted_by UUID NOT NULL,
-   coupon_code VARCHAR(16) NOT NULL,
-   name VARCHAR(64) NOT NULL,
-   description VARCHAR(255),
-   expiry_date TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-   discount_user_type TEXT NOT NULL,
-   discount_type TEXT NOT NULL,
-   discount DECIMAL(11, 2) NOT NULL,
-   min_total DECIMAL(11, 2) NOT NULL,
-   max_discount DECIMAL(11, 2) NOT NULL,
-   max_number_use_total INTEGER,
-   max_number_use_user INTEGER NOT NULL,
-   created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW() NOT NULL,
-   all_store BOOLEAN NOT NULL,
-   all_user BOOLEAN NOT NULL,
-   is_valid BOOLEAN NOT NULL,
-   CONSTRAINT pk_coupons PRIMARY KEY (id)
+```sql
+create type discount_type_enum as enum ('fixed', 'percentage');
+create type order_status_enum as enum ('pending', 'preparing', 'ready', 'complete', 'calcelled');
+create type order_type_enum as enum ('scheduled', 'now');
+create type pickup_type_enum as enum ('pickup', 'dine-in');
+
+create table coupons (
+   id uuid not null,
+   inserted_by uuid not null,
+   coupon_code varchar(16) not null,
+   name varchar(64) not null,
+   description varchar(255),
+   expiry_date timestamp without time zone not null,
+   discount_type discount_type_enum not null,
+   discount decimal(11, 2) not null,
+   min_total decimal(11, 2) not null,
+   max_discount decimal(11, 2) not null,
+   max_number_use_total integer,
+   max_number_use_user integer not null,
+   created_at timestamp without time zone default now() not null,
+   all_store boolean not null,
+   all_user boolean not null,
+   is_valid boolean not null,
+   constraint pk_coupons primary key (id)
 );
 
-CREATE TABLE items (
-   id UUID NOT NULL,
-   store_id UUID NOT NULL,
-   category_id UUID NOT NULL,
-   sub_category_id UUID,
-   name VARCHAR(64) NOT NULL,
-   picture TEXT,
-   price DECIMAL(11, 2) NOT NULL,
-   special_offer DECIMAL(11, 2) NOT NULL,
-   description VARCHAR(255),
-   is_active BOOLEAN NOT NULL,
-   CONSTRAINT pk_items PRIMARY KEY (id)
+create table items (
+   id uuid not null,
+   store_id uuid not null,
+   category_id uuid not null,
+   sub_category_id uuid,
+   name varchar(64) not null,
+   picture text,
+   price decimal(11, 2) not null,
+   special_offer decimal(11, 2) not null,
+   description varchar(255),
+   is_active boolean not null,
+   constraint pk_items primary key (id)
 );
 
-CREATE TABLE item_addons (
-   id UUID NOT NULL,
-   addon_category_id UUID NOT NULL,
-   name VARCHAR(64) NOT NULL,
-   price DECIMAL(11, 2) NOT NULL,
-   CONSTRAINT pk_item_addons PRIMARY KEY (id)
+create table item_addons (
+   id uuid not null,
+   addon_category_id uuid not null,
+   name varchar(64) not null,
+   price decimal(11, 2) not null,
+   constraint pk_item_addons primary key (id)
 );
 
-CREATE TABLE item_addon_categories (
-   id UUID NOT NULL,
-   item_id UUID NOT NULL ,
-   name VARCHAR(64) NOT NULL,
-   description VARCHAR(255),
-   is_multiple_choice BOOLEAN NOT NULL,
-   CONSTRAINT pk_item_addon_categories PRIMARY KEY (id)
+create table item_addon_categories (
+   id uuid not null,
+   item_id uuid not null ,
+   name varchar(64) not null,
+   description varchar(255),
+   is_multiple_choice boolean not null,
+   constraint pk_item_addon_categories primary key (id)
 );
 
-CREATE TABLE item_categories (
-   id UUID NOT NULL,
-   name VARCHAR(64) NOT NULL,
-   CONSTRAINT pk_item_categories PRIMARY KEY (id)
+create table item_categories (
+   id uuid not null,
+   name varchar(64) not null,
+   constraint pk_item_categories primary key (id)
 );
 
-CREATE TABLE item_category_l10ns (
-  name VARCHAR(64) NOT NULL,
-   category_id UUID NOT NULL,
-   language_code VARCHAR(2) NOT NULL,
-   CONSTRAINT pk_item_category_l10ns PRIMARY KEY (category_id, language_code)
+create table item_category_l10ns (
+   name varchar(64) not null,
+   category_id uuid not null,
+   language_code varchar(2) not null,
+   constraint pk_item_category_l10ns primary key (category_id, language_code)
 );
 
-CREATE TABLE item_sub_categories (
-   id UUID NOT NULL,
-   name VARCHAR(64) NOT NULL,
-   CONSTRAINT pk_item_sub_categories PRIMARY KEY (id)
+create table item_sub_categories (
+   id uuid not null,
+   name varchar(64) not null,
+   constraint pk_item_sub_categories primary key (id)
 );
 
-CREATE TABLE item_sub_category_l10ns (
-  name VARCHAR(64) NOT NULL,
-   sub_category_id UUID NOT NULL,
-   language_code VARCHAR(2) NOT NULL,
-   CONSTRAINT pk_item_sub_category_l10ns PRIMARY KEY (sub_category_id, language_code)
+create table item_sub_category_l10ns (
+   name varchar(64) not null,
+   sub_category_id uuid not null,
+   language_code varchar(2) not null,
+   constraint pk_item_sub_category_l10ns primary key (sub_category_id, language_code)
 );
 
-CREATE TABLE orders (
-   id UUID NOT NULL,
-   user_id UUID NOT null,
-   store_id UUID NOT NULL,
-   table_id UUID,
-   coupon_id UUID,
-   buyer VARCHAR(64) NOT NULL,
-   store_image TEXT,
-   store_banner TEXT,
-   created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW() NOT NULL,
-   coupon_code VARCHAR(16),
-   coupon_name VARCHAR(64),
-   discount DECIMAL(11, 2),
-   discount_nominal DECIMAL(11, 2) NOT NULL,
-   netto DECIMAL(11, 2) NOT NULL,
-   brutto DECIMAL(11, 2) NOT NULL,
-   status TEXT NOT NULL,
-   order_type TEXT NOT NULL,
-   scheduled_at TIMESTAMP WITHOUT TIME ZONE,
-   pickup_type TEXT NOT NULL,
-   rating DECIMAL(2, 1),
-   comment VARCHAR(255),
-   CONSTRAINT pk_orders PRIMARY KEY (id)
+create table orders (
+   id uuid not null,
+   user_id uuid not null,
+   store_id uuid not null,
+   table_id uuid,
+   coupon_id uuid,
+   buyer varchar(64) not null,
+   store_image text,
+   store_banner text,
+   created_at timestamp without time zone default now() not null,
+   coupon_code varchar(16),
+   coupon_name varchar(64),
+   discount decimal(11, 2),
+   discount_nominal decimal(11, 2) not null,
+   netto decimal(11, 2) not null,
+   brutto decimal(11, 2) not null,
+   status order_status_enum not null,
+   order_type order_type_enum not null,
+   scheduled_at timestamp without time zone,
+   pickup_type pickup_type_enum not null,
+   rating decimal(2, 1),
+   comment varchar(255),
+   constraint pk_orders primary key (id)
 );
 
-CREATE TABLE order_details (
-   id UUID NOT NULL,
-   order_id UUID not NULL,
-   item_id UUID not NULL,
-   item_name VARCHAR(64) NOT NULL,
-   quantity BOOLEAN NOT NULL,
-   price DECIMAL(11, 2) NOT NULL,
-   netto DECIMAL(11, 2) NOT NULL,
-   picture TEXT,
-   item_detail VARCHAR(255),
-   CONSTRAINT pk_order_details PRIMARY KEY (id)
+create table order_details (
+   id uuid not null,
+   order_id uuid not null,
+   item_id uuid not null,
+   item_name varchar(64) not null,
+   quantity boolean not null,
+   price decimal(11, 2) not null,
+   netto decimal(11, 2) not null,
+   picture text,
+   item_detail varchar(255),
+   constraint pk_order_details primary key (id)
 );
 
-CREATE TABLE order_detail_addons (
-  id UUID NOT NULL,
-   order_detail_id UUID not NULL,
-   addon_id UUID not NULL,
-   addon_name VARCHAR(64) NOT NULL,
-   quantity BOOLEAN NOT NULL,
-   price DECIMAL(11, 2) NOT NULL,
-   CONSTRAINT pk_order_detail_addons PRIMARY KEY (id)
+create table order_detail_addons (
+  id uuid not null,
+   order_detail_id uuid not null,
+   addon_id uuid not null,
+   addon_name varchar(64) not null,
+   quantity boolean not null,
+   price decimal(11, 2) not null,
+   constraint pk_order_detail_addons primary key (id)
 );
 
-CREATE TABLE postcodes (
-  postcode VARCHAR(5) NOT NULL,
-   city VARCHAR(128) NOT NULL,
-   state VARCHAR(128) NOT NULL,
-   country VARCHAR(56) NOT NULL,
-   CONSTRAINT pk_postcodes PRIMARY KEY (postcode)
+create table postcodes (
+  postcode varchar(5) not null,
+   city varchar(128) not null,
+   state varchar(128) not null,
+   country varchar(56) not null,
+   constraint pk_postcodes primary key (postcode)
 );
 
-CREATE TABLE tables (
-  id UUID NOT NULL,
-   store_id UUID not null,
-   name VARCHAR(64) NOT NULL,
-   max_person BOOLEAN NOT NULL,
-   total_person BOOLEAN NOT NULL,
-   book_price DECIMAL(11, 2) NOT NULL,
-   CONSTRAINT pk_tables PRIMARY KEY (id)
+create table tables (
+  id uuid not null,
+   store_id uuid not null,
+   name varchar(64) not null,
+   max_person boolean not null,
+   total_person boolean not null,
+   book_price decimal(11, 2) not null,
+   constraint pk_tables primary key (id)
 );
 
-CREATE TABLE roles (
-  name VARCHAR(16) NOT NULL,
-   CONSTRAINT pk_roles PRIMARY KEY (name)
+create table roles (
+  name varchar(16) not null,
+   constraint pk_roles primary key (name)
 );
 
-CREATE TABLE stores (
-  id UUID NOT NULL,
-   user_id UUID not null,
-   name VARCHAR(64) NOT NULL,
-   description VARCHAR(255),
-   image TEXT,
-   banner TEXT,
-   phone VARCHAR(16) NOT NULL,
-   pickup_type VARCHAR(255) NOT NULL,
-   street_address VARCHAR(255) NOT NULL,
-   postcode_id VARCHAR(5),
-   latitude DOUBLE PRECISION NOT NULL,
-   longitude DOUBLE PRECISION NOT NULL,
-   rating DECIMAL(2, 1),
-   is_active BOOLEAN NOT NULL,
-   CONSTRAINT pk_stores PRIMARY KEY (id)
+create table stores (
+  id uuid not null,
+   user_id uuid not null,
+   name varchar(64) not null,
+   description varchar(255),
+   image text,
+   banner text,
+   phone varchar(16) not null,
+   pickup_type pickup_type_enum not null,
+   street_address varchar(255) not null,
+   postcode_id varchar(5),
+   latitude double precision not null,
+   longitude double precision not null,
+   rating decimal(2, 1),
+   is_active boolean not null,
+   constraint pk_stores primary key (id)
 );
 
-CREATE TABLE users (
-   id UUID NOT NULL,
-   full_name VARCHAR(64) NOT NULL,
-   phone VARCHAR(16) NOT NULL,
-   language_code VARCHAR(2) NOT NULL,
-   role VARCHAR(16) NOT NULL,
-   created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW() NOT NULL,
-   CONSTRAINT pk_users PRIMARY KEY (id)
+create table users (
+   id uuid not null,
+   full_name varchar(64) not null,
+   phone varchar(16) not null,
+   language_code varchar(2) not null,
+   role varchar(16) not null,
+   created_at timestamp without time zone default now() not null,
+   constraint pk_users primary key (id)
 );
 
-CREATE UNIQUE INDEX phone ON users(phone);
+create unique index uk_users_on_phone on users(phone);
 
-ALTER TABLE users ADD CONSTRAINT FK_USERS_ON_ROLE FOREIGN KEY (role) REFERENCES roles (name);
+alter table users add constraint fk_users_on_role foreign key (role) references roles (name);
 
-ALTER TABLE stores ADD CONSTRAINT FK_STORES_ON_POSTCODE FOREIGN KEY (postcode_id) REFERENCES postcodes (postcode);
+alter table stores add constraint fk_stores_on_postcode foreign key (postcode_id) references postcodes (postcode);
 
-ALTER TABLE stores ADD CONSTRAINT FK_STORES_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
+alter table stores add constraint fk_stores_on_user foreign key (user_id) references users (id);
 
-ALTER TABLE tables ADD CONSTRAINT FK_TABLES_ON_STORE FOREIGN KEY (store_id) REFERENCES stores (id);
+alter table tables add constraint fk_tables_on_store foreign key (store_id) references stores (id);
 
-ALTER TABLE order_detail_addons ADD CONSTRAINT FK_ORDER_DETAIL_ADDONS_ON_ADDON FOREIGN KEY (addon_id) REFERENCES item_addons (id);
+create unique index uk_stores_on_phone on stores(phone);
 
-ALTER TABLE order_detail_addons ADD CONSTRAINT FK_ORDER_DETAIL_ADDONS_ON_ORDER_DETAIL FOREIGN KEY (order_detail_id) REFERENCES order_details (id);
+alter table order_detail_addons add constraint fk_order_detail_addons_on_addon foreign key (addon_id) references item_addons (id);
 
-ALTER TABLE order_details ADD CONSTRAINT FK_ORDER_DETAILS_ON_ITEM FOREIGN KEY (item_id) REFERENCES items (id);
+alter table order_detail_addons add constraint fk_order_detail_addons_on_order_detail foreign key (order_detail_id) references order_details (id);
 
-ALTER TABLE order_details ADD CONSTRAINT FK_ORDER_DETAILS_ON_ORDER FOREIGN KEY (order_id) REFERENCES orders (id);
+alter table order_details add constraint fk_order_details_on_item foreign key (item_id) references items (id);
 
-ALTER TABLE orders ADD CONSTRAINT FK_ORDERS_ON_COUPON FOREIGN KEY (coupon_id) REFERENCES coupons (id);
+alter table order_details add constraint fk_order_details_on_order foreign key (order_id) references orders (id);
 
-ALTER TABLE orders ADD CONSTRAINT FK_ORDERS_ON_STORE FOREIGN KEY (store_id) REFERENCES stores (id);
+alter table orders add constraint fk_orders_on_coupon foreign key (coupon_id) references coupons (id);
 
-ALTER TABLE orders ADD CONSTRAINT FK_ORDERS_ON_TABLE FOREIGN KEY (table_id) REFERENCES tables (id);
+alter table orders add constraint fk_orders_on_store foreign key (store_id) references stores (id);
 
-ALTER TABLE orders ADD CONSTRAINT FK_ORDERS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
+alter table orders add constraint fk_orders_on_table foreign key (table_id) references tables (id);
 
-ALTER TABLE item_sub_category_l10ns ADD CONSTRAINT FK_ITEM_SUB_CATEGORY_L10NS_ON_SUB_CATEGORY FOREIGN KEY (sub_category_id) REFERENCES item_sub_categories (id);
+alter table orders add constraint fk_orders_on_user foreign key (user_id) references users (id);
 
-ALTER TABLE item_category_l10ns ADD CONSTRAINT FK_ITEM_CATEGORY_L10NS_ON_CATEGORY FOREIGN KEY (category_id) REFERENCES item_categories (id);
+alter table item_sub_category_l10ns add constraint fk_item_sub_category_l10ns_on_sub_category foreign key (sub_category_id) references item_sub_categories (id);
 
-ALTER TABLE item_addon_categories ADD CONSTRAINT FK_ITEM_ADDON_CATEGORIES_ON_ITEM FOREIGN KEY (item_id) REFERENCES items (id);
+alter table item_category_l10ns add constraint fk_item_category_l10ns_on_category foreign key (category_id) references item_categories (id);
 
-ALTER TABLE item_addons ADD CONSTRAINT FK_ITEM_ADDONS_ON_ADDON_CATEGORY FOREIGN KEY (addon_category_id) REFERENCES item_addon_categories (id);
+alter table item_addon_categories add constraint fk_item_addon_categories_on_item foreign key (item_id) references items (id);
 
-ALTER TABLE items ADD CONSTRAINT FK_ITEMS_ON_CATEGORY FOREIGN KEY (category_id) REFERENCES item_categories (id);
+alter table item_addons add constraint fk_item_addons_on_addon_category foreign key (addon_category_id) references item_addon_categories (id);
 
-ALTER TABLE items ADD CONSTRAINT FK_ITEMS_ON_STORE FOREIGN KEY (store_id) REFERENCES stores (id);
+alter table items add constraint fk_items_on_category foreign key (category_id) references item_categories (id);
 
-ALTER TABLE items ADD CONSTRAINT FK_ITEMS_ON_SUB_CATEGORY FOREIGN KEY (sub_category_id) REFERENCES item_sub_categories (id);
+alter table items add constraint fk_items_on_store foreign key (store_id) references stores (id);
 
-ALTER TABLE coupons ADD CONSTRAINT FK_COUPONS_ON_INSERTED_BY FOREIGN KEY (inserted_by) REFERENCES users (id);
+alter table items add constraint fk_items_on_sub_category foreign key (sub_category_id) references item_sub_categories (id);
+
+alter table coupons add constraint fk_coupons_on_inserted_by foreign key (inserted_by) references users (id);
+
+create unique index uk_coupons_on_coupon_code_is_valid  on coupons(coupon_code, is_valid);
 ```
