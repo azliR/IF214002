@@ -45,7 +45,8 @@ Perintah TCL menangani transaksi dalam database. Transaksi disini adalah ketika 
 - `SAVEPOINT` : Mengatur savepoint dalam transaksi untuk melakukan rollback jika dibutuhkan.
 - `SET TRANSACTION`: Menentukan karakteristik untuk transaksi.
 
-### PostgreSQL Query Aplikasi Restoran
+### Perintah `CREATE TABLE` PostgreSQL Aplikasi Restoran
+
 ```sql
 create type discount_type_enum as enum ('fixed', 'percentage');
 create type order_status_enum as enum ('pending', 'preparing', 'ready', 'complete', 'calcelled');
@@ -168,7 +169,7 @@ create table order_details (
 );
 
 create table order_detail_addons (
-  id uuid not null,
+   id uuid not null,
    order_detail_id uuid not null,
    addon_id uuid not null,
    addon_name varchar(64) not null,
@@ -178,7 +179,7 @@ create table order_detail_addons (
 );
 
 create table postcodes (
-  postcode varchar(5) not null,
+   postcode varchar(5) not null,
    city varchar(128) not null,
    state varchar(128) not null,
    country varchar(56) not null,
@@ -186,7 +187,7 @@ create table postcodes (
 );
 
 create table tables (
-  id uuid not null,
+   id uuid not null,
    store_id uuid not null,
    name varchar(64) not null,
    max_person boolean not null,
@@ -196,12 +197,12 @@ create table tables (
 );
 
 create table roles (
-  name varchar(16) not null,
+   name varchar(16) not null,
    constraint pk_roles primary key (name)
 );
 
 create table stores (
-  id uuid not null,
+   id uuid not null,
    user_id uuid not null,
    name varchar(64) not null,
    description varchar(255),
