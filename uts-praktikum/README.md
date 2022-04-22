@@ -228,49 +228,49 @@ create table users (
    constraint pk_users primary key (id)
 );
 
-create unique index uk_users_on_phone on users(phone);
-
-alter table users add constraint fk_users_on_role foreign key (role) references roles (name);
-
-alter table stores add constraint fk_stores_on_postcode foreign key (postcode_id) references postcodes (postcode);
-
-alter table stores add constraint fk_stores_on_user foreign key (user_id) references users (id);
-
-alter table tables add constraint fk_tables_on_store foreign key (store_id) references stores (id);
+create unique index uk_coupons_on_coupon_code_is_valid  on coupons(coupon_code, is_valid);
 
 create unique index uk_stores_on_phone on stores(phone);
 
-alter table order_detail_addons add constraint fk_order_detail_addons_on_addon foreign key (addon_id) references item_addons (id);
-
-alter table order_detail_addons add constraint fk_order_detail_addons_on_order_detail foreign key (order_detail_id) references order_details (id);
-
-alter table order_details add constraint fk_order_details_on_item foreign key (item_id) references items (id);
-
-alter table order_details add constraint fk_order_details_on_order foreign key (order_id) references orders (id);
-
-alter table orders add constraint fk_orders_on_coupon foreign key (coupon_id) references coupons (id);
-
-alter table orders add constraint fk_orders_on_store foreign key (store_id) references stores (id);
-
-alter table orders add constraint fk_orders_on_table foreign key (table_id) references tables (id);
-
-alter table orders add constraint fk_orders_on_user foreign key (user_id) references users (id);
-
-alter table item_sub_category_l10ns add constraint fk_item_sub_category_l10ns_on_sub_category foreign key (sub_category_id) references item_sub_categories (id);
-
-alter table item_category_l10ns add constraint fk_item_category_l10ns_on_category foreign key (category_id) references item_categories (id);
-
-alter table item_addon_categories add constraint fk_item_addon_categories_on_item foreign key (item_id) references items (id);
-
-alter table item_addons add constraint fk_item_addons_on_addon_category foreign key (addon_category_id) references item_addon_categories (id);
-
-alter table items add constraint fk_items_on_category foreign key (category_id) references item_categories (id);
-
-alter table items add constraint fk_items_on_store foreign key (store_id) references stores (id);
-
-alter table items add constraint fk_items_on_sub_category foreign key (sub_category_id) references item_sub_categories (id);
+create unique index uk_users_on_phone on users(phone);
 
 alter table coupons add constraint fk_coupons_on_inserted_by foreign key (inserted_by) references users (id);
 
-create unique index uk_coupons_on_coupon_code_is_valid  on coupons(coupon_code, is_valid);
+alter table items add constraint fk_items_on_sub_category foreign key (sub_category_id) references item_sub_categories (id);
+
+alter table items add constraint fk_items_on_store foreign key (store_id) references stores (id);
+
+alter table items add constraint fk_items_on_category foreign key (category_id) references item_categories (id);
+
+alter table item_addons add constraint fk_item_addons_on_addon_category foreign key (addon_category_id) references item_addon_categories (id);
+
+alter table item_addon_categories add constraint fk_item_addon_categories_on_item foreign key (item_id) references items (id);
+
+alter table item_category_l10ns add constraint fk_item_category_l10ns_on_category foreign key (category_id) references item_categories (id);
+
+alter table item_sub_category_l10ns add constraint fk_item_sub_category_l10ns_on_sub_category foreign key (sub_category_id) references item_sub_categories (id);
+
+alter table orders add constraint fk_orders_on_user foreign key (user_id) references users (id);
+
+alter table orders add constraint fk_orders_on_table foreign key (table_id) references tables (id);
+
+alter table orders add constraint fk_orders_on_store foreign key (store_id) references stores (id);
+
+alter table orders add constraint fk_orders_on_coupon foreign key (coupon_id) references coupons (id);
+
+alter table order_details add constraint fk_order_details_on_order foreign key (order_id) references orders (id);
+
+alter table order_details add constraint fk_order_details_on_item foreign key (item_id) references items (id);
+
+alter table order_detail_addons add constraint fk_order_detail_addons_on_order_detail foreign key (order_detail_id) references order_details (id);
+
+alter table order_detail_addons add constraint fk_order_detail_addons_on_addon foreign key (addon_id) references item_addons (id);
+
+alter table tables add constraint fk_tables_on_store foreign key (store_id) references stores (id);
+
+alter table stores add constraint fk_stores_on_user foreign key (user_id) references users (id);
+
+alter table stores add constraint fk_stores_on_postcode foreign key (postcode_id) references postcodes (postcode);
+
+alter table users add constraint fk_users_on_role foreign key (role) references roles (name);
 ```
