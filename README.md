@@ -4,32 +4,64 @@ Repository pembelajaran Basis Data.
 
 # Aplikasi Restoran
 
-## Deskripsi
-
-Aplikasi ini berfokus untuk membuka peluang usaha di sebuah restoran atau drive-through. Beberapa fitur yang menjadi
-poin penting aplikasi in diantaranya:
-
-- Melihat keadaan restoran apakah sedang penuh pelanggan atau kosong
-- Memudahkan dalam pemesanan pada saat ingin melakukan booking meja
-- Memesan dengan cepat langsung dari aplikasi dan ambil saat itu juga atau sesuai schedule yang ditentukan tanpa lama
-  menunggu
-
 ## Daftar Isi
 
-- [Deskripsi](#deskripsi)
-- [Changelog](#changelog)
-  - [Pertemuan 1](#pertemuan-1)
-  - [Pertemuan 2](#pertemuan-2)
-  - [Pertemuan 3](#pertemuan-3)
-  - [Pertemuan 4](#pertemuan-4)
-  - [Pertemuan 5](#pertemuan-5)
-  - [Pertemuan 6](#pertemuan-6)
-  - [Pertemuan 7](#pertemuan-7)
-  - [UTS](#uts)
-- [Diagram](#diagram)
-- [Entitas dan Atribut](#entitas-dan-atribut)
-- [Relasi Entitas](#relasi-entitas)
-- [Profil](#profil)
+- [IF214002](#if214002)
+- [Aplikasi Restoran](#aplikasi-restoran)
+  - [Daftar Isi](#daftar-isi)
+  - [Deskripsi](#deskripsi)
+  - [Changelog](#changelog)
+    - [Pertemuan 1](#pertemuan-1)
+    - [Pertemuan 2](#pertemuan-2)
+    - [Pertemuan 3](#pertemuan-3)
+    - [Pertemuan 4](#pertemuan-4)
+    - [Pertemuan 5](#pertemuan-5)
+    - [Pertemuan 6](#pertemuan-6)
+    - [Pertemuan 7](#pertemuan-7)
+    - [Pertemuan 8 (UTS)](#pertemuan-8-uts)
+    - [Pertemuan 9](#pertemuan-9)
+    - [Pertemuan 10](#pertemuan-10)
+  - [Diagram](#diagram)
+  - [Entitas dan Atribut](#entitas-dan-atribut)
+    - [Users](#users)
+    - [Roles](#roles)
+    - [Stores](#stores)
+    - [Postcodes](#postcodes)
+    - [Items](#items)
+    - [Item Categories](#item-categories)
+    - [Item Category L10ns](#item-category-l10ns)
+    - [Item Sub Categories](#item-sub-categories)
+    - [Item Sub Category L10ns](#item-sub-category-l10ns)
+    - [Item Addon Categories](#item-addon-categories)
+    - [Item Addons](#item-addons)
+    - [Orders](#orders)
+    - [Order Details](#order-details)
+    - [Order Detail Addons](#order-detail-addons)
+    - [Tables](#tables)
+    - [Coupons](#coupons)
+    - [Coupon Users](#coupon-users)
+    - [Coupon Stores](#coupon-stores)
+  - [Relasi Entitas](#relasi-entitas)
+  - [Profil](#profil)
+
+## Deskripsi
+
+Terkadang kita ingin pergi ke suatu restoran atau sedang kumpul bersama teman-teman dan ingin memesan makanan bersama
+disana, apa yang
+pertama di benak kita? Apakah tempatnya ramai? Apakah masih tersedia meja untuk dipesan? Aplikasi restoran ini menjawab
+pertanyaan-pertanyaan tersebut. Dengan aplikasi restoran pelanggan dapat melihat status restoran yang ingin dipesan
+apakah ramai pembeli, apakah meja masih tersedia, apakah makanan tersedia, dan sebagainya hanya melalui aplikasi.
+Pelanggan hanya perlu memesan makanan dari aplikasi dan datang ke restoran untuk mengambil pesanan hanya dengan
+menunjukkan kode QR unik, tanpa perlu repot
+mengantri.
+
+- Pencarian restoran terdekat dengan lokasi pelanggan.
+- Melihat antrian dan status meja yang tersedia tanpa harus mengunjungi restoran terlebih dahulu.
+- Mempermudah melakukan pemesanan makanan atau minuman secara langsung dari aplikasi, beserta varian yang tersedia (jika
+  ada).
+- Memesan secara terjadwal, pesan sekarang ambil beberapa jam kemudian.
+- Mempermudah melihat daftar order, baik itu pesanan yang masih menunggu konfirmasi, dan sedang disiapkan; sampai
+  pesanan yang sudah selesai, pesanan ditolak, dan pesanan dibatalkan.
 
 ## Changelog
 
@@ -113,17 +145,31 @@ pada gambar dan klik buka gambar di tab baru (open image in new tab)._
 
 ### [Pertemuan 7](pertemuan7)
 
-Quiz 1 jam. Lihat [soal dan jawaban]([Pertemuan 7](pertemuan7)).
+Quiz 1 jam. Lihat [soal dan jawaban](pertemuan7).
 
 <details>
   <summary>Diagram hasil praktikum (klik untuk membuka)</summary>
 
-![Diagram ER Logical v0.6](pertemuan7/ERD Data Karyawan.drawio.svg)
+![Diagram ER Logical v0.6](pertemuan7/ERD%20Data%20Karyawan.drawio.svg)
 </details>
 
-### [Pertemuan 8 (UTS)](uts)
+### Pertemuan 8 (UTS)
+Lihat [soal dan jawaban UTS](uts).  
+Lihat [soal dan jawaban UTS Praktikum](uts-praktikum).
 
-UTS
+### [Pertemuan 9](pertemuan9)
+- 🛠️ Perbaikan struktur database pada users
+- 🆕 Menambahkan file `restaurant.sql` yang berisi kode SQL untuk pembuatan tabel-tabel menggunakan PostgreSQL
+
+<details>
+  <summary>Diagram hasil praktikum (klik untuk membuka)</summary>
+
+![Diagram ER Logical v0.9](pertemuan9/ERD%20Data%20Karyawan.drawio.svg)
+</details>
+
+### [Pertemuan 10](pertemuan10)
+- 🆕 Menambahkan query add data pada file `restaurant.sql`
+- 🆕 Tugas
 
 ## Diagram
 
@@ -305,7 +351,7 @@ _\*\* composite key_
 ## Relasi Entitas
 
 |       Entitas 1       |  Relasi   |        Entitas 2        |
-|:---------------------:|:---------:|:-----------------------:|
+| :-------------------: | :-------: | :---------------------: |
 |         Users         | 1 1 - 0 1 |         Stores          |
 |         Users         | 1 1 - 0 N |      Coupon Users       |
 |         Users         | 1 1 - 0 N |         Coupons         |
