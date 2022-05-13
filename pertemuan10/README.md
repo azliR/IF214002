@@ -5,7 +5,8 @@
 - Nilai tambah, untuk yang menambahkan perintah-perintah MySQL lainnya
 
 ## Jawaban
-- In progress
+- Cheatsheet PostgreSQL
+![Cheat sheet PostgreSQL](cheatsheet.png)
 - Query untuk mencari penduduk berusia diatas 25 tahun yang berada di kabupaten 3204
 ```sql
 SELECT * FROM penduduk WHERE TIMESTAMPDIFF(YEAR, tanggal_lahir, now()) > 25 AND kode_kabupaten = '3204'
