@@ -171,6 +171,12 @@ Lihat [soal dan jawaban UTS Praktikum](uts-praktikum).
 - 🆕 Menambahkan query add data pada file `restaurant.sql`
 - 🆕 Tugas
 
+<details>
+  <summary>Cheatsheet PostgreSQL (klik untuk membuka)</summary>
+
+![Cheatsheet PostgreSQL](pertemuan10/cheatsheet.png)
+</details>
+
 ## Diagram
 
 ![Diagram ER Logical v0.6](/pertemuan6/pertemuan6.drawio.svg)
