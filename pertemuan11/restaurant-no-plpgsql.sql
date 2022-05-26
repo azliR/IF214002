@@ -822,8 +822,14 @@ WHERE id = 'a9a54fca-ec42-40e5-ad1e-f1aaa3b0322f';
 -- Stores
 --
 -- Get Store by Id
-SELECT *
+SELECT stores.*,
+    postcodes.city,
+    postcodes.state,
+    postcodes.country
 FROM stores
+    JOIN postcodes ON stores.postcode = postcodes.postcode
+WHERE stores.id = '93ab578c-46fa-42f6-b61f-ef13fe13045d';
+
 WHERE id = '93ab578c-46fa-42f6-b61f-ef13fe13045d';
 
 -- Get Nearest Store (Example, lat: -6.938068, lng: 107.7006738)
@@ -854,7 +860,7 @@ SELECT *
 FROM items
 WHERE id = '7b1c8c31-4a0f-4457-8c71-8f06631aa9ae';
 
--- Get Item by Store Id
+-- Get Items by Store Id
 SELECT *
 FROM items
 WHERE store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
@@ -866,7 +872,7 @@ ORDER BY (
     )
 LIMIT 10 OFFSET 0;
 
--- Get Item by Store Id and Sub Category Id
+-- Get Items by Store Id and Sub Category Id
 SELECT *
 FROM items
 WHERE store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
@@ -904,7 +910,9 @@ LIMIT 10 OFFSET 0;
 -- Get Addon Categories by Item ID
 SELECT *
 FROM item_addon_categories
-WHERE item_id = '7b1c8c31-4a0f-4457-8c71-8f06631aa9ae';
+WHERE item_id = '7b1c8c31-4a0f-4457-8c71-8f06631aa9ae'
+ORDER BY name
+LIMIT 10 OFFSET 0;
 
 -- Get Addons by Addon Category ID
 SELECT *
@@ -913,38 +921,48 @@ WHERE addon_category_id = '17b3be90-d177-4e59-8582-cf6c97f94aa9';
 
 -- Categories
 --
--- Get Categories
-SELECT *
-FROM item_categories
-ORDER BY name
-LIMIT 10 OFFSET 0;
-
--- Get Categories with language code (Example, language_code: id)
+-- Get Categories Have Items with language code (Example, language_code: id)
 SELECT item_categories.id,
-    item_categories.name AS name,
-    item_category_l10ns.name AS name_l10n
+    item_category_l10ns.language_code,
+    item_categories.name,
+    item_category_l10ns.name AS translated_name
 FROM item_categories
     LEFT JOIN item_category_l10ns ON item_categories.id = item_category_l10ns.category_id
-WHERE item_category_l10ns.language_code = 'id'
-ORDER BY item_category_l10ns.name
+    AND item_category_l10ns.language_code = 'id'
+WHERE (
+        SELECT COUNT(*)
+        FROM items
+        WHERE items.category_id = item_categories.id
+    ) > 0
+ORDER BY (
+        CASE
+            WHEN item_category_l10ns.name IS NOT NULL THEN item_category_l10ns.name
+            ELSE item_categories.name
+        END
+    )
 LIMIT 10 OFFSET 0;
 
 -- Get Sub Categories
-SELECT id,
-    name
-FROM item_sub_categories
-WHERE store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
-ORDER BY name
-LIMIT 10 OFFSET 0;
-
--- Get Sub Categories with language code (Example, language_code: id)
+-- Get Sub Categories Have Items with language code (Example, language_code: id)
 SELECT item_sub_categories.id,
-    item_sub_categories.name AS name,
-    item_sub_category_l10ns.name AS name_l10n
+    item_sub_category_l10ns.language_code,
+    item_sub_categories.name,
+    item_sub_category_l10ns.name AS translated_name
 FROM item_sub_categories
     LEFT JOIN item_sub_category_l10ns ON item_sub_categories.id = item_sub_category_l10ns.sub_category_id
-WHERE item_sub_category_l10ns.language_code = 'id'
-ORDER BY item_sub_category_l10ns.name
+    AND item_sub_category_l10ns.language_code = 'id'
+WHERE item_sub_categories.store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
+    AND (
+        SELECT COUNT(*)
+        FROM items
+        WHERE items.sub_category_id = item_sub_categories.id
+    ) > 0
+ORDER BY (
+        CASE
+            WHEN item_sub_category_l10ns.name IS NOT NULL THEN item_sub_category_l10ns.name
+            ELSE item_sub_categories.name
+        END
+    )
 LIMIT 10 OFFSET 0;
 
 -- Orders
