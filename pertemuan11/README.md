@@ -1006,24 +1006,27 @@ WHERE id = '93ab578c-46fa-42f6-b61f-ef13fe13045d';
 ```
 
 Terdapat tabel yang tidak memerlukan `UPDATE`
+UPDATE coupon_customers
 ```sql
--- UPDATE coupon_customers
 -- SET
 -- WHERE coupon_id = ?
 --     AND customer_id = ?;
+UPDATE coupon_stores
 
--- UPDATE coupon_stores
 -- SET
 -- WHERE coupon_id = ?
 --     AND store_id = ?;
+UPDATE store_pickup_types
 
--- UPDATE store_pickup_types
 -- SET
 -- WHERE store_id = ?
 --     AND pickup_type = '';
 ```
-### DELETE
+
+### 
+DELETE
 Menghapus beberapa data pada setiap tabel
+
 
 ```sql
 DELETE FROM order_detail_addons
@@ -1145,8 +1148,16 @@ WHERE id = 'a9a54fca-ec42-40e5-ad1e-f1aaa3b0322f';
 ### Stores
 Get Store by Id
 ```sql
-SELECT *
+SELECT stores.*,
+    postcodes.city,
+    postcodes.state,
+    postcodes.country
 FROM stores
+    JOIN postcodes ON stores.postcode = postcodes.postcode
+WHERE stores.id = '93ab578c-46fa-42f6-b61f-ef13fe13045d';
+```
+
+```sql
 WHERE id = '93ab578c-46fa-42f6-b61f-ef13fe13045d';
 ```
 
@@ -1181,24 +1192,36 @@ FROM items
 WHERE id = '7b1c8c31-4a0f-4457-8c71-8f06631aa9ae';
 ```
 
-Get Item by Store Id
+Get Items by Store Id
 ```sql
 SELECT *
 FROM items
 WHERE store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
+ORDER BY (
+        CASE
+            WHEN special_offer IS NOT NULL THEN special_offer
+            ELSE price
+        END
+    )
 LIMIT 10 OFFSET 0;
 ```
 
-Get Item by Store Id and Sub Category Id
+Get Items by Store Id and Sub Category Id
 ```sql
 SELECT *
 FROM items
 WHERE store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
     AND sub_category_id = 'db126848-5a16-4723-bcb1-524695a0d286'
+ORDER BY (
+        CASE
+            WHEN special_offer IS NOT NULL THEN special_offer
+            ELSE price
+        END
+    )
 LIMIT 10 OFFSET 0;
 ```
 
-Get Nearby Items with Special Offers (Example, lat: -6.938068, lng: 107.7006738)
+Get Nearby Items with Special Offers (-6.938068, 107.7006738)
 ```sql
 SELECT items.*
 FROM (
@@ -1218,62 +1241,129 @@ WHERE nearby_stores.distance <= 5
     AND items.special_offer IS NOT NULL
 ORDER BY distance
 LIMIT 10 OFFSET 0;
-
-Add ons
---
-Get Categories
-Categories
 ```
---
+
+### Add ons
+Get Addon Categories by Item ID
 ```sql
-Get Categories
-SELECT id,
-    name
+SELECT *
+FROM item_addon_categories
+WHERE item_id = '7b1c8c31-4a0f-4457-8c71-8f06631aa9ae'
+ORDER BY name
+LIMIT 10 OFFSET 0;
+```
+
+Get Addons by Addon Category ID
+```sql
+SELECT *
+FROM item_addons
+WHERE addon_category_id = '17b3be90-d177-4e59-8582-cf6c97f94aa9';
+```
+
+### Categories
+Get Categories Have Items with language code (Example, language_code: id)
+```sql
+SELECT item_categories.id,
+    item_category_l10ns.language_code,
+    item_categories.name,
+    item_category_l10ns.name AS translated_name
 FROM item_categories
+    LEFT JOIN item_category_l10ns ON item_categories.id = item_category_l10ns.category_id
+    AND item_category_l10ns.language_code = 'id'
+WHERE (
+        SELECT COUNT(*)
+        FROM items
+        WHERE items.category_id = item_categories.id
+    ) > 0
+ORDER BY (
+        CASE
+            WHEN item_category_l10ns.name IS NOT NULL THEN item_category_l10ns.name
+            ELSE item_categories.name
+        END
+    )
 LIMIT 10 OFFSET 0;
-
-Sub Categories
 ```
---
-```sql
+
 Get Sub Categories
-SELECT id,
-    name
+```sql
+-- Get Sub Categories Have Items with language code (Example, language_code: id)
+SELECT item_sub_categories.id,
+    item_sub_category_l10ns.language_code,
+    item_sub_categories.name,
+    item_sub_category_l10ns.name AS translated_name
 FROM item_sub_categories
-WHERE store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
+    LEFT JOIN item_sub_category_l10ns ON item_sub_categories.id = item_sub_category_l10ns.sub_category_id
+    AND item_sub_category_l10ns.language_code = 'id'
+WHERE item_sub_categories.store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
+    AND (
+        SELECT COUNT(*)
+        FROM items
+        WHERE items.sub_category_id = item_sub_categories.id
+    ) > 0
+ORDER BY (
+        CASE
+            WHEN item_sub_category_l10ns.name IS NOT NULL THEN item_sub_category_l10ns.name
+            ELSE item_sub_categories.name
+        END
+    )
 LIMIT 10 OFFSET 0;
 ```
 
-```sql
-Orders
---
+### Orders
 Get Order by Id
+```sql
 SELECT *
 FROM orders
 WHERE id = 'd0dc6416-d1cb-4e4c-b5d0-3af7b176fb4c';
 ```
 
-```sql
 Get Orders by Customers ID
+```sql
 SELECT *
 FROM orders
 WHERE customer_id = '1c7b3156-986b-487b-8d6c-2db03806ca30'
 LIMIT 10 OFFSET 0;
-
-Coupons
 ```
---
+
+### Coupons
+Get Coupon by Coupon Code and Store ID
 ```sql
-Get Coupon by Coupon Code
 SELECT *
-FROM coupons
-WHERE coupon_code = 'BREAK';
+FROM coupons,
+    coupon_stores
+WHERE coupons.coupon_code = 'BREAK'
+    AND coupons.is_valid = TRUE
+    AND coupon_stores.coupon_id = coupons.id
+    AND coupon_stores.store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d';
+
 ```
 
-```sql
 Get Coupon by Store Id
+```sql
 SELECT coupons.*
 FROM coupons,
     coupon_stores
 WHERE coupon_stores.store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
 LIMIT 10 OFFSET 0;
+```
+
+Get Coupon by Store Id Ordered by Highest Discount (Example, total)
+```sql
+SELECT coupons.*
+FROM coupons,
+    coupon_stores
+WHERE coupon_stores.store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
+ORDER BY discount DESC
+LIMIT 10 OFFSET 0;
+```
+
+Get Coupon by Customer ID Ordered by Expiry Date
+```sql
+SELECT coupons.*
+FROM coupons,
+    coupon_customers
+WHERE coupon_customers.customer_id = '1c7b3156-986b-487b-8d6c-2db03806ca30'
+    AND coupons.id = coupon_customers.coupon_id
+ORDER BY coupons.expiry_date
+LIMIT 10 OFFSET 0;
+```

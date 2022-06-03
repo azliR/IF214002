@@ -830,8 +830,6 @@ FROM stores
     JOIN postcodes ON stores.postcode = postcodes.postcode
 WHERE stores.id = '93ab578c-46fa-42f6-b61f-ef13fe13045d';
 
-WHERE id = '93ab578c-46fa-42f6-b61f-ef13fe13045d';
-
 -- Get Nearest Store (Example, lat: -6.938068, lng: 107.7006738)
 SELECT nearby_stores.*,
     postcodes.city,
@@ -1012,3 +1010,21 @@ WHERE coupon_customers.customer_id = '1c7b3156-986b-487b-8d6c-2db03806ca30'
     AND coupons.id = coupon_customers.coupon_id
 ORDER BY coupons.expiry_date
 LIMIT 10 OFFSET 0;
+
+-- Reservation Table
+--
+-- Get reservation table by Store ID
+SELECT reservation_tables.*,
+    (
+        SELECT COUNT(orders) AS total_person
+        FROM orders,
+            reservation_tables
+        WHERE orders.table_id = reservation_tables.id
+            AND (
+                orders.status != 'complete'
+                OR orders.status != 'cancelled'
+            )
+    ) AS total_person
+FROM reservation_tables
+WHERE reservation_tables.store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
+ORDER BY name;
