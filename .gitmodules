@@ -1,9 +1,9 @@
 [submodule "flutter_restaurant"]
 	path = flutter_restaurant
 	url = https://github.com/azliR/flutter_restaurant.git
-[submodule "spring_api-restaurant"]
-	path = spring_api-restaurant
-	url = https://github.com/azliR/spring_api-restaurant.git
 [submodule "web_restaurant"]
 	path = web_restaurant
 	url = https://github.com/azliR/web_restaurant.git
+[submodule "dart_restaurant_api"]
+	path = dart_restaurant_api
+	url = https://github.com/azliR/dart_restaurant_api.git
