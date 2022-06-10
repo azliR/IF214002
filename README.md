@@ -21,6 +21,11 @@ Repository pembelajaran Basis Data.
     - [Pertemuan 8 (UTS)](#pertemuan-8-uts)
     - [Pertemuan 9](#pertemuan-9)
     - [Pertemuan 10](#pertemuan-10)
+    - [Pertemuan 10](#pertemuan-10-1)
+    - [Pertemuan 11](#pertemuan-11)
+    - [Pertemuan 12](#pertemuan-12)
+    - [Pertemuan 13](#pertemuan-13)
+    - [Pertemuan 14](#pertemuan-14)
   - [Diagram](#diagram)
   - [Entitas dan Atribut](#entitas-dan-atribut)
     - [Users](#users)
@@ -179,6 +184,22 @@ Lihat [soal dan jawaban UTS Praktikum](uts-praktikum).
 
 ### [Pertemuan 10](pertemuan10)
 - 🆕 Menambahkan query add data pada file `restaurant.sql`
+- 
+### [Pertemuan 11](pertemuan11)
+- 🆕 Menambahkan `restaurant-no-plpgsql.sql` yang berisi query tanpa PL/PGSQL
+- 🚀 Update beberapa query `restaurant.sql`
+
+### [Pertemuan 12](pertemuan12)
+- 🆕 Menambahkan `restaurant-no-plpgsql-one-run.sql` yang berisi query siap run
+- 🚀 Update beberapa query `restaurant-no-plpgsql.sql`
+
+### [Pertemuan 13](pertemuan13)
+- 🆕 Menambahkan project API di folder [dart_restaurant_api](dart_restaurant_api/)
+- 🚀 Mengubah nama `restaurant-no-plpgsql-one-run.sql` menjadi `restaurant-template.sql`
+- 🚀 Update beberapa query `restaurant-no-plpgsql.sql`
+
+### [Pertemuan 14](pertemuan14)
+- 🆕 Tugas, lihat [disini](pertemuan14)
 
 ## Diagram
 
