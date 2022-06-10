@@ -11,8 +11,12 @@
 ## Struktur data dan bentuk visualisasi
 - Trend pemesanan item
     - Visualisasi: Stack Bar Chart
-    - Data: minggu ke, bulan, tahun, jumlah pemesanan
+    - Data: hari ke, item, jumlah pemesanan
     - Screenshot: ![Trend pemesanan](stack-bar-chart.png)
+- Trend pemasukan
+    - Visualisasi: Line Chart
+    - Data: bulan, jumlah pemasukan
+    - Screenshot: ![Trend jumlah pemasukan](line-chart.png)
 ## Query SQL
 - Trend pemesanan item
 ```sql
@@ -31,4 +35,20 @@ WHERE items.id = order_details.item_id
 GROUP BY date,
     items.id
 ORDER BY total_sales DESC;
+```
+
+- Trend pemasukan
+```sql
+SELECT DATE_TRUNC('day', orders.created_at) AS date,
+    SUM(orders.netto) AS total_profit
+FROM items,
+    order_details,
+    orders
+WHERE items.id = order_details.item_id
+    AND order_details.order_id = orders.id
+    AND orders.status = 'complete'
+    AND orders.store_id = '93ab578c-46fa-42f6-b61f-ef13fe13045d'
+    AND orders.created_at >= NOW() - INTERVAL '7 days'
+GROUP BY date
+ORDER BY total_profit DESC;
 ```
