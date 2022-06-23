@@ -26,6 +26,8 @@ Repository pembelajaran Basis Data.
     - [Pertemuan 12](#pertemuan-12)
     - [Pertemuan 13](#pertemuan-13)
     - [Pertemuan 14](#pertemuan-14)
+    - [Pertemuan 15](#pertemuan-15)
+    - [Pertemuan 16](#pertemuan-16)
   - [Diagram](#diagram)
   - [Entitas dan Atribut](#entitas-dan-atribut)
     - [Users](#users)
@@ -184,7 +186,7 @@ Lihat [soal dan jawaban UTS Praktikum](uts-praktikum).
 
 ### [Pertemuan 10](pertemuan10)
 - 🆕 Menambahkan query add data pada file `restaurant.sql`
-- 
+
 ### [Pertemuan 11](pertemuan11)
 - 🆕 Menambahkan `restaurant-no-plpgsql.sql` yang berisi query tanpa PL/PGSQL
 - 🚀 Update beberapa query `restaurant.sql`
@@ -200,6 +202,13 @@ Lihat [soal dan jawaban UTS Praktikum](uts-praktikum).
 
 ### [Pertemuan 14](pertemuan14)
 - 🆕 Tugas, lihat [disini](pertemuan14)
+
+### [Pertemuan 15](pertemuan15)
+- 🆕 Penambahan query chart
+- 🆕 Menambahkan project restaurant_store di folder [flutter_restaurant_store](flutter_restaurant_store/)
+
+### [Pertemuan 16](pertemuan16)
+- 🆕 Update API dengan penambahan middleware dengan JWT menggunakan Redis
 
 ## Diagram
 
