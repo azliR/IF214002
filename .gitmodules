@@ -7,3 +7,6 @@
 [submodule "dart_restaurant_api"]
 	path = dart_restaurant_api
 	url = https://github.com/azliR/dart_restaurant_api.git
+[submodule "flutter_restaurant_store"]
+	path = flutter_restaurant_store
+	url = https://github.com/azliR/flutter_restaurant_store.git
