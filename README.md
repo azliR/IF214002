@@ -30,24 +30,6 @@ Repository pembelajaran Basis Data.
     - [Pertemuan 16](#pertemuan-16)
   - [Diagram](#diagram)
   - [Entitas dan Atribut](#entitas-dan-atribut)
-    - [Users](#users)
-    - [Roles](#roles)
-    - [Stores](#stores)
-    - [Postcodes](#postcodes)
-    - [Items](#items)
-    - [Item Categories](#item-categories)
-    - [Item Category L10ns](#item-category-l10ns)
-    - [Item Sub Categories](#item-sub-categories)
-    - [Item Sub Category L10ns](#item-sub-category-l10ns)
-    - [Item Addon Categories](#item-addon-categories)
-    - [Item Addons](#item-addons)
-    - [Orders](#orders)
-    - [Order Details](#order-details)
-    - [Order Detail Addons](#order-detail-addons)
-    - [Tables](#tables)
-    - [Coupons](#coupons)
-    - [Coupon Users](#coupon-users)
-    - [Coupon Stores](#coupon-stores)
   - [Relasi Entitas](#relasi-entitas)
   - [Profil](#profil)
 
@@ -410,7 +392,7 @@ _\*\* composite key_
 |        Coupons        | 1 1 - 0 N |      Coupon Users       |
 
 ## Profil
-
+Portfolio: [https://azlir.github.io/](https://azlir.github.io/#/)
 ```
 Nama        : Rizal Hadiyansah  
 NIM         : 1207050109  
