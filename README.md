@@ -2,6 +2,8 @@
 
 Repository pembelajaran Basis Data.
 
+Youtube: https://youtu.be/VTk8gR0hhTc
+
 # Aplikasi Restoran
 
 ## Daftar Isi
